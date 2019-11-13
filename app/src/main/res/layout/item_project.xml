@@ -8,7 +8,7 @@
         android:orientation="horizontal"
         android:padding="10dp">
 
-    <com.xing.wanandroid.widget.RoundImageView
+    <com.bruce.wanandroid.widget.RoundImageView
             android:id="@+id/iv_project_image"
             android:layout_width="120dp"
             android:layout_height="match_parent"

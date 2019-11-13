@@ -10,7 +10,7 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
 
-    <com.xing.wanandroid.widget.RoundImageView
+    <com.bruce.wanandroid.widget.RoundImageView
             tools:src="@drawable/dog"
             app:shape="rectangle"
             app:radius="6dp"

@@ -29,7 +29,7 @@
                 android:layout_marginTop="50dp"
                 android:src="@drawable/android_logo" />
 
-        <com.xing.wanandroid.widget.ClearEditText
+        <com.bruce.wanandroid.widget.ClearEditText
                 android:id="@+id/cet_login_username"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -39,7 +39,7 @@
                 app:clearIcon="@drawable/ic_close_gray"
                 app:tipIcon="@drawable/ic_login_user" />
 
-        <com.xing.wanandroid.widget.ClearEditText
+        <com.bruce.wanandroid.widget.ClearEditText
                 android:id="@+id/cet_login_password"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -51,7 +51,7 @@
                 app:tipIcon="@drawable/ic_login_password" />
 
 
-        <com.xing.wanandroid.widget.LoginView
+        <com.bruce.wanandroid.widget.LoginView
                 android:id="@+id/lv_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -1,4 +1,4 @@
-package com.bruce.wanandroid.web.adapter
+package com.brcue.wanandroid.web.adapter
 
 import com.bruce.wanandroid.R
 import com.bruce.wanandroid.web.bean.WebOptBean

@@ -1,4 +1,4 @@
-package com.xing.wanandroid.main.widgets
+package com.bruce.wanandroid.main.widgets
 
 import android.content.Context
 import android.util.AttributeSet

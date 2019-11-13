@@ -22,7 +22,7 @@
 
     </com.google.android.material.tabs.TabLayout>
 
-    <com.xing.wanandroid.main.widgets.ProjectViewPager
+    <com.bruce.wanandroid.main.widgets.ProjectViewPager
             android:id="@+id/vp_project_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

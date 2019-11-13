@@ -15,7 +15,7 @@
             android:textColor="@color/color_f32"
             android:textSize="18sp" />
 
-    <com.xing.wanandroid.widget.flowlayout.FlowLayout
+    <com.bruce.wanandroid.widget.flowlayout.FlowLayout
             android:id="@+id/fl_flow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

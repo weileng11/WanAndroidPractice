@@ -1,4 +1,4 @@
-package com.xing.wanandroid.common.annotation
+package com.bruce.wanandroid.common.annotation
 
 @Retention(AnnotationRetention.RUNTIME)
 @Target(AnnotationTarget.CLASS)

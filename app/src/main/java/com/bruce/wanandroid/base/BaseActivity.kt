@@ -6,9 +6,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.bruce.wanandroid.R
+import com.bruce.wanandroid.common.annotation.EventBusSubscribe
 import com.bruce.wanandroid.utils.EventBusUtils
 import com.jaeger.library.StatusBarUtil
-import com.xing.wanandroid.common.annotation.EventBusSubscribe
 
 /**
  * @author: BaseActivity

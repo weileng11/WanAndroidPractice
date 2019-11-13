@@ -11,7 +11,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp">
 
-        <com.xing.wanandroid.widget.RoundImageView
+        <com.bruce.wanandroid.widget.RoundImageView
                 android:id="@+id/iv_gank_header_img"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
@@ -31,7 +31,7 @@
 
     </RelativeLayout>
 
-    <com.xing.wanandroid.home.widget.WxPublicRecyclerView
+    <com.bruce.wanandroid.home.widget.WxPublicRecyclerView
             android:id="@+id/rv_gank_header_wxpublic"
             android:layout_width="match_parent"
             android:layout_height="80dp"
