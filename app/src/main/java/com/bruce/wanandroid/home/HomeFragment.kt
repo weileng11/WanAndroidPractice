@@ -11,7 +11,7 @@ import com.bruce.wanandroid.R
 import com.bruce.wanandroid.base.mvp.BaseMVPFragment
 import com.bruce.wanandroid.home.adapter.HomeRecyclerAdapter
 import com.bruce.wanandroid.home.bean.Article
-import com.bruce.wanandroid.project.contract.HomeContract
+import com.bruce.wanandroid.home.contract.HomeContract
 import com.bruce.wanandroid.project.presenter.HomePresenter
 import com.bruce.wanandroid.utils.*
 import com.bruce.wanandroid.web.WebViewActivity
@@ -69,7 +69,7 @@ class HomeFragment : BaseMVPFragment<HomeContract.View, HomePresenter>(), HomeCo
         // recyclerview 点击监听
         adapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
             val bundle = Bundle()
-            val bean = dataList[position]
+            val bean=dataList[position]
             bundle.putString(URL, bean.link)
             bundle.putInt(ID, bean.id)
             bundle.putString(AUTHOR, bean.author)
@@ -113,7 +113,7 @@ class HomeFragment : BaseMVPFragment<HomeContract.View, HomePresenter>(), HomeCo
         }
         banner.setImageLoader(object : ImageLoader() {
             override fun displayImage(context: Context?, path: Any?, imageView: ImageView?) {
-                val roundedCorners = RoundedCorners(20)
+                val roundedCorners = RoundedCorners(60)
                 val bitmapTransform = RequestOptions.bitmapTransform(roundedCorners)
                 Glide.with(context!!).load(path).apply(bitmapTransform).into(imageView!!)
             }
@@ -122,6 +122,7 @@ class HomeFragment : BaseMVPFragment<HomeContract.View, HomePresenter>(), HomeCo
             .isAutoPlay(true)
             .start()
 
+        //点击监听
         banner.setOnBannerListener(object : OnBannerListener {
             override fun OnBannerClick(position: Int) {
                 if (list != null) {
@@ -140,6 +141,7 @@ class HomeFragment : BaseMVPFragment<HomeContract.View, HomePresenter>(), HomeCo
 
     }
 
+    //返回数据
     override fun onArticles(page: Int, list: List<Article>?) {
         refreshLayout?.finishRefresh()
         refreshLayout?.finishLoadMore()

@@ -20,8 +20,15 @@ import com.tencent.mm.opensdk.modelbase.BaseResp
 import io.reactivex.Observable
 import retrofit2.http.*
 
+/**
+ * @author: MainActivity
+ * @project: ApiService
+ * @package: com.bruce.wanandroid
+ * @description:
+ * @date: 2019/11/13
+ * @time:  14:36
+ */
 interface ApiService {
-
 
     @GET("project/tree/json")
     fun getProjectTabs(): Observable<BaseResponse<List<ProjectTab>>>
@@ -51,7 +58,6 @@ interface ApiService {
     @POST("lg/collect/{id}/json")
     fun addFavorite(@Path("id") id: Int): Observable<BaseResponse<AddFavoriteResponse>>
 
-
     @POST("lg/collect/add/json")
     @FormUrlEncoded
     fun addFavorite(@Field("title") title: String, @Field("author") author: String, @Field("link") link: String): Observable<BaseResponse<AddFavoriteResponse>>
@@ -75,6 +81,7 @@ interface ApiService {
     @GET("article/list/{page}/json")
     fun getSystemArticles(@Path("page") page: Int, @Query("cid") cid: Int): Observable<BaseResponse<ArticleResponse>>
 
+    //收藏
     @GET("lg/collect/list/{page}/json")
     fun getArticleFavorites(@Path("page") page: Int): Observable<BaseResponse<ArticleResponse>>
 

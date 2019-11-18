@@ -31,7 +31,7 @@ import com.bruce.wanandroid.widget.WebDialogFragment
 import com.bruce.wanandroid.widget.XWebView
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
 
-
+//网页
 class WebViewActivity : BaseMVPActivity<WebContract.View, WebPresenter>(), WebContract.View {
 
     private lateinit var toolbar: Toolbar

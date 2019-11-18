@@ -9,8 +9,10 @@ import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseSectionQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 
+//https://blog.csdn.net/u013064109/article/details/78786646
 class GankTodayAdapter(layoutResId: Int, sectionHeadResId: Int, list: List<GankTodayEntity<GankToday>>) : BaseSectionQuickAdapter<GankTodayEntity<GankToday>, BaseViewHolder>(layoutResId, sectionHeadResId, list) {
 
+    //头部
     override fun convertHead(helper: BaseViewHolder?, item: GankTodayEntity<GankToday>?) {
         helper?.setText(R.id.tv_gank_section_head, item?.header)
     }
@@ -23,10 +25,36 @@ class GankTodayAdapter(layoutResId: Int, sectionHeadResId: Int, list: List<GankT
             publishedAt.length < 10 -> publishedAtString = publishedAt
             else -> publishedAtString = publishedAt.substring(0, 10)
         }
-        helper?.setText(R.id.tv_gank_desc, item?.t?.desc)
-            ?.setText(R.id.tv_gank_who, item?.t?.who)
-            ?.setText(R.id.tv_gank_create_time, publishedAtString)
-            ?.setGone(R.id.ll_gank_images_parent, item?.t?.images != null && item.t?.images?.size != 0)
+
+
+        val item1=item?.t ?:return
+//        item1?.run {
+//            helper?.setText(R.id.tv_gank_desc, desc)
+//            ?.setText(R.id.tv_gank_who, who)
+//            ?.setText(R.id.tv_gank_create_time, publishedAtString)
+//            ?.setGone(R.id.ll_gank_images_parent, images != null && images?.size != 0)
+//        }
+
+//        with(item1){
+//            helper?.setText(R.id.tv_gank_desc, desc)
+//                ?.setText(R.id.tv_gank_who, who)
+//                ?.setText(R.id.tv_gank_create_time, publishedAtString)
+//                ?.setGone(R.id.ll_gank_images_parent, images != null && images?.size != 0)
+//        }
+
+        item1?.apply {
+            helper?.setText(R.id.tv_gank_desc, desc)
+                ?.setText(R.id.tv_gank_who, who)
+                ?.setText(R.id.tv_gank_create_time, publishedAtString)
+                ?.setGone(R.id.ll_gank_images_parent, images != null && images?.size != 0)
+        }
+
+
+
+//        helper?.setText(R.id.tv_gank_desc, item?.t?.desc)
+//            ?.setText(R.id.tv_gank_who, item?.t?.who)
+//            ?.setText(R.id.tv_gank_create_time, publishedAtString)
+//            ?.setGone(R.id.ll_gank_images_parent, item?.t?.images != null && item.t?.images?.size != 0)
 
         val leftDrawable = createColorDrawable(mContext)
         val centerDrawable = createColorDrawable(mContext)

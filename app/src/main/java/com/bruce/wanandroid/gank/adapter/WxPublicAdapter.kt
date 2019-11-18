@@ -12,7 +12,8 @@ class WxPublicAdapter : BaseQuickAdapter<WxPublic, BaseViewHolder> {
     constructor(layoutResId: Int, list: List<WxPublic>) : super(layoutResId, list)
 
     override fun convert(helper: BaseViewHolder?, item: WxPublic?) {
-        val name: String = item?.name ?: ""
+//        val name: String = item?.name ?: ""
+        val name:String =item?.name?:return
         helper?.setText(R.id.tv_wx_author, name)
             ?.setText(R.id.tv_wx_author_icon, name.substring(0, 1))
     }

@@ -24,7 +24,7 @@ class RetrofitClient {
             .sslSocketFactory(SSLSocketClient.getSSLSocketFactory())
             .hostnameVerifier(SSLSocketClient.getHostnameVerifier())
             .addInterceptor(logInterceptor())
-            .cookieJar(MainApp.getInstance().getPersistentCookieJar())
+            .cookieJar(MainApp.getInstance().getPersistentCookieJar()) //cookieJar
 //            .addInterceptor()
             .build()
         retrofit = Retrofit.Builder()

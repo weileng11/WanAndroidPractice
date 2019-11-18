@@ -63,6 +63,7 @@ class SystemFragment : BaseMVPFragment<SystemContract.View, SystemPresenter>(),
                 gotoActivity(mContext as Activity, SystemArticleActivity().javaClass, bundle)
             }
         }
+
         contentRecyclerView?.adapter = contentAdapter
 
         // 请求数据
@@ -95,7 +96,7 @@ class SystemFragment : BaseMVPFragment<SystemContract.View, SystemPresenter>(),
     }
 
     companion object {
-        @JvmStatic
+        @JvmStatic //通过 java 代码进行调用时，通过@JvmStatic 生命的变量或者函数可以直接调用，未生命的变量或者函数不能直接调用。
         fun newInstance() = SystemFragment()
     }
 }

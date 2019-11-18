@@ -54,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:lineSpacingExtra="2dp"
-                    android:text="星火燎原"
+                    android:text="Bruce"
                     android:textColor="@color/color_f5c" />
 
             <TextView

@@ -14,6 +14,7 @@ import com.google.android.material.tabs.TabLayout
 
 private const val ARG_PARAM1 = "param1"
 
+//项目
 class ProjectFragment : BaseMVPFragment<ProjectContract.View, ProjectPresenter>(), ProjectContract.View {
 
     private var param1: String? = null
@@ -36,6 +37,7 @@ class ProjectFragment : BaseMVPFragment<ProjectContract.View, ProjectPresenter>(
         return ProjectPresenter()
     }
 
+    //获取数据
     override fun initData() {
         super.initData()
         presenter.getProjectTabs()
@@ -46,15 +48,12 @@ class ProjectFragment : BaseMVPFragment<ProjectContract.View, ProjectPresenter>(
         adapter.setDataSource(projectTabsList)
     }
 
+    //获取所有的fragment
     private fun getFragmentItems(projectTabs: List<ProjectTab>?): List<FragmentItem> {
         val list = mutableListOf<FragmentItem>()
         if (projectTabs != null) {
             for (projectTab in projectTabs) {
-                list.add(
-                    FragmentItem(
-                        projectTab.name, ProjectPageFragment.newInstance(projectTab.id)
-                    )
-                )
+                list.add(FragmentItem(projectTab.name, ProjectPageFragment.newInstance(projectTab.id)))
             }
         }
         return list
@@ -75,6 +74,5 @@ class ProjectFragment : BaseMVPFragment<ProjectContract.View, ProjectPresenter>(
     companion object {
         @JvmStatic
         fun newInstance() = ProjectFragment()
-
     }
 }

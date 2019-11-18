@@ -11,6 +11,9 @@ import com.bruce.wanandroid.utils.IMAGES
 import com.bruce.wanandroid.utils.INDEX
 import com.jaeger.library.StatusBarUtil
 
+/**
+ * 图片显示
+ */
 class ImageBrowseActivity : BaseActivity() {
 
     private lateinit var backImgView: ImageView

@@ -76,6 +76,7 @@ class MainActivity : BaseMVPActivity<MainContract.View,MainPresenter>(),MainCont
         drawerLayout = findViewById(R.id.dl_drawer_layout)
         StatusBarUtil.setColorForDrawerLayout(this, drawerLayout, resources.getColor(R.color.colorPrimary), 0)
         navigationView = this.findViewById(R.id.nv_left_navigation)
+        //头部
         val headerView: View = navigationView.getHeaderView(0)
         usernameTextView = headerView.findViewById(R.id.tv_nav_username)
         avatarBackground = headerView.findViewById(R.id.iv_avatar_background)
@@ -111,21 +112,25 @@ class MainActivity : BaseMVPActivity<MainContract.View,MainPresenter>(),MainCont
             true
         }
 
+        //模糊度
         val bitmap = BitmapFactory.decodeResource(resources, R.drawable.avatar)
         avatarBackground.setImageBitmap(blur(mContext, bitmap, 22))
     }
 
     override fun initData() {
         super.initData()
-        val list = mutableListOf<FragmentItem>()
+        //4个fragment
+        val list = mutableListOf<FragmentItem>() //可变列表
         list.add(FragmentItem("首页", HomeFragment.newInstance()))
         list.add(FragmentItem("项目", ProjectFragment.newInstance()))
         list.add(FragmentItem("体系", SystemFragment.newInstance()))
         list.add(FragmentItem("干货", GankFragment.newInstance()))
         mAdapter = MainViewPageAdapter(this, supportFragmentManager, list)
         mainViewPager.adapter = mAdapter
+        //tab 设置mainViewPager
         mainTabLayout.setupWithViewPager(mainViewPager)
 
+        //循环添加tab
         for (i in 0..mainTabLayout.tabCount) {
             val tabView: TabLayout.Tab? = mainTabLayout.getTabAt(i)
             tabView?.customView = mAdapter.getTabView(i)
@@ -133,31 +138,35 @@ class MainActivity : BaseMVPActivity<MainContract.View,MainPresenter>(),MainCont
 
         // 默认选中第 0 个
         mainViewPager.currentItem = 0
+        //1.具体的tab 2.文字大小,3.是否选中
         changeTabView(mainTabLayout.getTabAt(0), 14f, true)
 
         mainTabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {
             }
-
+            //没有选中
             override fun onTabUnselected(tab: TabLayout.Tab?) {
                 changeTabView(tab, 14f, false)
             }
-
+            //选中
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 changeTabView(tab, 14f, true)
 
             }
         })
+        //是否登录
         setUsernameFromCache()
+        //获取数据(db)
         presenter.getUserInfo()
         mainSearch.setOnClickListener(this)
     }
 
     private fun setUsernameFromCache() {
+        //cokkie检测
         loggedIn = isCookieNotEmpty(mContext)
-        if (!loggedIn) {
+        if (!loggedIn) { //为空
             usernameTextView.text = getString(R.string.click_to_login)
-        } else {
+        } else { //不为空
             val user = getCacheUser()
             val username: String
             if (user != null) {
@@ -180,6 +189,7 @@ class MainActivity : BaseMVPActivity<MainContract.View,MainPresenter>(),MainCont
         }
     }
 
+    //缓存的数据库名称
     private fun getCacheUser(): User? {
         val users = DbManager.getInstance().getUserDao().loadAll()
         if (users != null && users.size > 0) {
@@ -188,6 +198,7 @@ class MainActivity : BaseMVPActivity<MainContract.View,MainPresenter>(),MainCont
         return null
     }
 
+    //返回的数据
     override fun onUserInfo(user: User) {
         Log.e("MainActivity", user.toString())
         loggedIn = isCookieNotEmpty(mContext)
@@ -196,6 +207,7 @@ class MainActivity : BaseMVPActivity<MainContract.View,MainPresenter>(),MainCont
         }
     }
 
+    //登录后设置数据
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onLoginStatusChanged(event: LoggedInEvent) {
         val user = event.user
@@ -217,11 +229,14 @@ class MainActivity : BaseMVPActivity<MainContract.View,MainPresenter>(),MainCont
 
     override fun onClick(v: View?) {
         when (v?.id) {
+            //搜索
             R.id.iv_main_search -> {
                 gotoSearchActivity()
                 overridePendingTransition(0, 0)
             }
+            //点击名称
             R.id.tv_nav_username -> {
+                //登录后不跳转
                 loggedIn = isCookieNotEmpty(mContext)
                 if (!loggedIn) {
                     gotoLoginActivity()

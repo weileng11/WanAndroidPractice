@@ -20,6 +20,7 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 
+//公众号
 class WxPublicArticleActivity : BaseMVPActivity<WxPublicArticleContract.View, WxPublicArticlePresenter>(),
     WxPublicArticleContract.View {
 
@@ -99,6 +100,7 @@ class WxPublicArticleActivity : BaseMVPActivity<WxPublicArticleContract.View, Wx
     override fun dismissLoading() {
     }
 
+    //公众号数据
     override fun onWxPublicArticle(page: Int, list: List<Article>?) {
         refreshLayout.finishLoadMore()
         mCurPage = page + 1

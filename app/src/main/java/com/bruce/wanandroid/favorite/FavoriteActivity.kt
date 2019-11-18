@@ -23,6 +23,7 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 
+//收藏
 class FavoriteActivity : BaseMVPActivity<FavoriteContract.View, FavoritePresenter>(),
     FavoriteContract.View {
 
@@ -73,6 +74,7 @@ class FavoriteActivity : BaseMVPActivity<FavoriteContract.View, FavoritePresente
     override fun initData() {
         super.initData()
         presenter.getArticleFavorites(curPage)
+        //更多
         refreshLayout.setOnLoadMoreListener(object : OnLoadMoreListener {
 
             override fun onLoadMore(refreshLayout: RefreshLayout) {

@@ -1,4 +1,4 @@
-package com.bruce.wanandroid.project.contract
+package com.bruce.wanandroid.home.contract
 
 import com.bruce.wanandroid.base.mvp.IView
 import com.bruce.wanandroid.home.bean.Article

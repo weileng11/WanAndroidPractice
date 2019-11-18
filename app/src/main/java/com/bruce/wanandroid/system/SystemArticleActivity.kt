@@ -68,6 +68,7 @@ class SystemArticleActivity : BaseMVPActivity<SystemArticleContract.View, System
         setListener()
     }
 
+    //跳转到WebViewActivity
     private fun setListener() {
         mAdapter.onItemClickListener = object : BaseQuickAdapter.OnItemClickListener {
             override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {

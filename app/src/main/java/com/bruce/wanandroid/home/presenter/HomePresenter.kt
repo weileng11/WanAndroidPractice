@@ -7,7 +7,7 @@ import com.bruce.wanandroid.home.bean.Article
 import com.bruce.wanandroid.home.bean.ArticleResponse
 import com.bruce.wanandroid.home.bean.Banner
 import com.bruce.wanandroid.http.BaseObserver
-import com.bruce.wanandroid.project.contract.HomeContract
+import com.bruce.wanandroid.home.contract.HomeContract
 import io.reactivex.Observable
 import io.reactivex.functions.BiFunction
 
@@ -15,6 +15,7 @@ class HomePresenter : BasePresenter<HomeContract.View>(), HomeContract.Presenter
 
     private var dataList = ArrayList<Article>()
 
+    //banner
     override fun getBanner() {
         addSubscribe(create(ApiService::class.java).getBanner(), object : BaseObserver<List<Banner>>() {
             override fun onSuccess(data: List<Banner>?) {

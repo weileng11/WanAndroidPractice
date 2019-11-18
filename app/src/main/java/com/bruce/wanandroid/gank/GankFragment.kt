@@ -28,7 +28,8 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 
 /**
  * gank fragment
- *
+ * lateinit  lateinit 1只能用在var类型,2.lateinit不能用在可空的属性上和java的基本类型上
+ * 3.lateinit可以在任何位置初始化并且可以初始化多次
  */
 class GankFragment : BaseMVPFragment<GankContract.View, GankPresenter>(), GankContract.View {
 
@@ -70,8 +71,8 @@ class GankFragment : BaseMVPFragment<GankContract.View, GankPresenter>(), GankCo
 
     override fun initData() {
         super.initData()
-        presenter.getWxPublic()
-        presenter.getGankToday()
+        presenter.getWxPublic() //微信公众
+        presenter.getGankToday() //今日项目
         chooseDateImgView?.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
 
@@ -85,6 +86,7 @@ class GankFragment : BaseMVPFragment<GankContract.View, GankPresenter>(), GankCo
     override fun dismissLoading() {
     }
 
+    //公众号
     override fun onWxPublic(list: List<WxPublic>?) {
         if (list == null) {
             return
@@ -105,6 +107,7 @@ class GankFragment : BaseMVPFragment<GankContract.View, GankPresenter>(), GankCo
         }
     }
 
+    //今日文章
     override fun onGankToday(map: HashMap<String, List<GankToday>>?) {
         Log.e("debug", "map = $map")
         val list: ArrayList<GankTodayEntity<GankToday>> = ArrayList()
@@ -120,11 +123,13 @@ class GankFragment : BaseMVPFragment<GankContract.View, GankPresenter>(), GankCo
 //                headerImgView.setColorFilter(filter)
                     continue
                 }
+                //设置key
                 list.add(GankTodayEntity(true, key))
                 val size = map.get(key)?.size ?: 0
                 for (i in 0 until size) {
                     val gankToday = map.get(key)?.get(i)
                     if (gankToday != null) {
+                        //添加对象
                         list.add(GankTodayEntity(gankToday))
                     }
                 }

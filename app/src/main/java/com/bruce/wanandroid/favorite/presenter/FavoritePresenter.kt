@@ -6,7 +6,7 @@ import com.bruce.wanandroid.favorite.contract.FavoriteContract
 import com.bruce.wanandroid.home.bean.ArticleResponse
 import com.bruce.wanandroid.http.BaseObserver
 
-
+//收藏接口
 class FavoritePresenter : BasePresenter<FavoriteContract.View>(), FavoriteContract.Presenter {
 
     override fun getArticleFavorites(page: Int) {

@@ -23,6 +23,7 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 
+//const修饰的非静态成员函数
 private const val CID = "cid"
 
 class ProjectPageFragment : BaseLazyFragment<ProjectPageContract.View, ProjectPagePresenter>(),
@@ -64,16 +65,21 @@ class ProjectPageFragment : BaseLazyFragment<ProjectPageContract.View, ProjectPa
         })
     }
 
+    //加载数据
     override fun loadData() {
+        //请求数据
         presenter.getProjectLists(mCurPage, cid)
         mAdapter = ProjectAdapter(R.layout.item_project)
         recyclerView?.adapter = mAdapter
+        //点击
         mAdapter.onItemClickListener =
             BaseQuickAdapter.OnItemClickListener { adapter, view, position -> onItemClick(position) }
+        //子类头部点击
         mAdapter.onItemChildClickListener =
             BaseQuickAdapter.OnItemChildClickListener { adapter, view, position -> onItemChildClick(position) }
     }
 
+    //返回数据
     override fun onProjectLists(page: Int, response: ProjectResponse?) {
         refreshLayout?.finishLoadMore()
         mCurPage = page + 1
@@ -83,9 +89,10 @@ class ProjectPageFragment : BaseLazyFragment<ProjectPageContract.View, ProjectPa
         mAdapter.setNewData(dataList)
     }
 
+    //获取cid
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
+        arguments?.let { //表示arguments不为null的条件下，才会去执行let函数体
             cid = it.getInt(CID)
         }
     }
@@ -161,6 +168,7 @@ class ProjectPageFragment : BaseLazyFragment<ProjectPageContract.View, ProjectPa
     companion object {
         @JvmStatic
         fun newInstance(cid: Int) =
+            //https://blog.csdn.net/u013064109/article/details/78786646
             ProjectPageFragment().apply {
                 arguments = Bundle().apply {
                     putInt(CID, cid)

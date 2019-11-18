@@ -20,6 +20,7 @@ import com.bruce.wanandroid.utils.gotoActivity
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 
+//妹子
 class MeiziActivity : BaseMVPActivity<MeiziContract.View, MeiziPresenter>(), MeiziContract.View {
 
     private lateinit var recyclerView: RecyclerView

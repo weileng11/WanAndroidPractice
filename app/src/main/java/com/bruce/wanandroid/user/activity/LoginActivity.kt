@@ -82,6 +82,7 @@ class LoginActivity : BaseMVPActivity<LoginContract.View, LoginPresenter>(),
             return
         }
         presenter.login(username, password)
+        //按钮动画
         loginView.setState(LoginView.STATE_LOADING)
     }
 
@@ -112,6 +113,7 @@ class LoginActivity : BaseMVPActivity<LoginContract.View, LoginPresenter>(),
 
     override fun onDestroy() {
         super.onDestroy()
+        //重置
         loginView.release()
     }
 }

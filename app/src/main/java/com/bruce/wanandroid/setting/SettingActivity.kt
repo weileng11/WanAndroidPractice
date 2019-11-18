@@ -13,6 +13,7 @@ import com.bruce.wanandroid.utils.dp2px
 import com.bruce.wanandroid.utils.isCookieNotEmpty
 import org.greenrobot.eventbus.EventBus
 
+//设置
 class SettingActivity : BaseMVPActivity<SettingContract.View, SettingPresenter>(),
     SettingContract.View {
 
@@ -59,6 +60,7 @@ class SettingActivity : BaseMVPActivity<SettingContract.View, SettingPresenter>(
     }
 
     override fun onLogoutResult() {
+        //清除cookiejar
         MainApp.getInstance().getPersistentCookieJar().clear()
         EventBus.getDefault().post(LoggedInEvent(null))
         finish()

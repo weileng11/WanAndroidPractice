@@ -21,6 +21,5 @@ fun blur(context: Context, bitmap: Bitmap, radius: Int): Bitmap {
     scriptIntrinsicBlur.forEach(output)
     output.copyTo(outputBitmap)
     return outputBitmap
-
 }
 
