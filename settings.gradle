@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':AndroidProjectKt'
 rootProject.name='WanAndroidPractice'
