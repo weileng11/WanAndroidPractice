@@ -1,0 +1,44 @@
+Android Studio中Java和Kotlin相互转换
+
+Java转Kotlin
+
+打开要转的文件
+方法1
+Ctrl+Shift+Alt+K
+方法2
+Code - Convert Java File To Kotlin File
+
+Kotlikn 转 Java
+
+Tools>Kotlin>Show Kotlin Bytecode
+Decompile
+
+
+1.java使用format转换，在通过java转kt
+可以先创建一个A.java，导入
+ /**
+     * children : [{"children":[],"courseId":13,"id":60,"name":"Android Studio相关","order":1000,"parentChapterId":150,"userControlSetTop":false,"visible":1},{"children":[],"courseId":13,"id":169,"name":"gradle","order":1001,"parentChapterId":150,"userControlSetTop":false,"visible":1},{"children":[],"courseId":13,"id":269,"name":"官方发布","order":1002,"parentChapterId":150,"userControlSetTop":false,"visible":1}]
+     * courseId : 13
+     * id : 150
+     * name : 开发环境
+     * order : 1
+     * parentChapterId : 0
+     * userControlSetTop : false
+     * visible : 1
+     */
+使用format转换，在通过Java转Kotlin实现
+
+2.Android -------- kotlin插件神器Json直接生成javaBean
+原文地址:https://www.cnblogs.com/zhangqie/p/11533859.html
+说明:打开开发工具,并按如下指示操作
+   Android studio ->File -> Settings ->Plugins ->Browse repositores -> 搜索JsonToKotlin
+  转换的格式:
+  { "desc" : "享学~",
+      "id" : "29",
+      "imagePath" : "https://wanandroid.com/blogimgs/cd53b340-1d94-4810-b864-567574e85de7.jpeg",
+      "isVisible" : "1",
+      "order" : "0",
+      "title" : "老板说要加点功能。。。",
+      "type" :"0",
+      "url" : "https://mp.weixin.qq.com/s/Rv70Tpb4nVizSK0TrK6_FA"
+    }

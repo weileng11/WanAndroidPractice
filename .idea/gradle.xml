@@ -10,6 +10,8 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/AndroidProjectKt" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/base" />
+            <option value="$PROJECT_DIR$/wanandroidsx" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
