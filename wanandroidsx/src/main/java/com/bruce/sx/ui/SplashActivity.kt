@@ -2,7 +2,7 @@ package com.bruce.sx.ui
 
 import android.Manifest
 import android.os.Bundle
-import com.bruce.sx.MainActivity
+import com.bruce.sx.ui.main.MainActivity
 import com.bruce.sx.R
 import com.bruce.sx.base.BaseActivity
 import com.bruce.sx.base.IBasePresenter

@@ -3,17 +3,13 @@ package com.bruce.sx.utils
 import com.zs.wanandroid.constants.Constants
 import com.zs.wanandroid.event.LogoutEvent
 import org.greenrobot.eventbus.EventBus
-import java.util.HashSet
 import android.content.ClipboardManager
 import android.content.Context
-import android.provider.SyncStateContract
 
 
 /**
  * des app管理类
  *
- * @author zs
- * @date 2020-03-12
  */
 class AppManager {
     companion object{

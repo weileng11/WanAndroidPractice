@@ -5,8 +5,7 @@ import com.bruce.sx.WanAndroidApplication
 
 
 /**
- * @author zs
- * @date 2020-03-09
+ * @author bruce
  */
 object UIUtils {
 

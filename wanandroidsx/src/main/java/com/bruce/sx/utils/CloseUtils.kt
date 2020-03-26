@@ -5,8 +5,6 @@ import java.io.IOException
 
 /**
  * des 关闭io工具类
- * @author zs
- * @date 2020-03-09
  */
 class CloseUtils private constructor() {
     init {

@@ -11,8 +11,6 @@ import com.bruce.sx.WanAndroidApplication;
 /**
  * des 颜色处理工具类
  *
- * @date 2020/03/07
- * @author: zs
  */
 public class ColorUtils {
     /**
