@@ -1,8 +1,9 @@
-package com.bruce.sx
+package com.bruce.sx.base
 
 import android.app.Application
 import android.content.Context
 
+import com.bruce.sx.R
 import com.bruce.sx.utils.ColorUtils
 import com.scwang.smartrefresh.header.MaterialHeader
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
@@ -14,15 +15,23 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.footer.BallPulseFooter
 
 
+/**
+ * des app
+ * @author zs
+ * @date 2020-03-05
+ */
 class WanAndroidApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
         baseApplication = this
+        context = applicationContext
     }
 
     companion object {
         private var baseApplication: Application? = null
+        var context: Context? = null
+            private set
 
         //static 代码段可以防止内存泄露
         init {
@@ -41,8 +50,5 @@ class WanAndroidApplication : Application() {
                 footer
             }
         }
-
-        val context: Context?
-            get() = baseApplication
     }
 }

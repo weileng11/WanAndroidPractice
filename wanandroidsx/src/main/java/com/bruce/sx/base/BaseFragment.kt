@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.bruce.sx.annotation.BindEventBus
 import com.bruce.sx.ui.login.LoginActivity
 import com.bruce.sx.utils.AppManager
+import org.greenrobot.eventbus.EventBus
 
 /**
  * @author: brcue
@@ -17,6 +19,7 @@ import com.bruce.sx.utils.AppManager
  * @date: 2020/3/26
  * @time:  11:32
  */
+@BindEventBus
 abstract class BaseFragment<P:IBasePresenter<*>>: Fragment(){
 
     protected var TAG = javaClass.name
@@ -25,6 +28,7 @@ abstract class BaseFragment<P:IBasePresenter<*>>: Fragment(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        EventBus.getDefault().register(this)
         presenter = createPresenter()
         presenter?.let { lifecycle.addObserver(it) }
     }
@@ -37,6 +41,11 @@ abstract class BaseFragment<P:IBasePresenter<*>>: Fragment(){
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         init(savedInstanceState)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+//        EventBus.getDefault().unregister(this)
     }
 
     protected abstract fun init(savedInstanceState: Bundle?)

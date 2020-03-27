@@ -2,7 +2,7 @@ package com.bruce.sx.utils
 
 import android.widget.Toast
 
-import com.bruce.sx.WanAndroidApplication
+import com.bruce.sx.base.WanAndroidApplication
 
 object ToastUtils {
 

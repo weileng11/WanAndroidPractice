@@ -1,7 +1,7 @@
 package com.bruce.sx.utils
 
 import android.content.Context
-import com.bruce.sx.WanAndroidApplication
+import com.bruce.sx.base.WanAndroidApplication
 
 
 /**

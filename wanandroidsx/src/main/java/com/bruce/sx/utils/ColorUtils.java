@@ -5,7 +5,7 @@ import android.text.TextUtils;
 
 import androidx.core.content.ContextCompat;
 
-import com.bruce.sx.WanAndroidApplication;
+import com.bruce.sx.base.WanAndroidApplication;
 
 
 /**

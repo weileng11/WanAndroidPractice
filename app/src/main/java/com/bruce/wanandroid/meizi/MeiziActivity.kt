@@ -50,7 +50,7 @@ class MeiziActivity : BaseMVPActivity<MeiziContract.View, MeiziPresenter>(), Mei
         recyclerView = findViewById(R.id.rv_meizi)
         gridLayoutManager = GridLayoutManager(mContext, 4)
 
-        recyclerView.layoutManager = gridLayoutManager
+        recyclerView.layoutManager = gridLayoutManager as RecyclerView.LayoutManager?
         meiziAdapter = MeiziAdapter(R.layout.item_meizi)
         recyclerView.adapter = meiziAdapter
         gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
