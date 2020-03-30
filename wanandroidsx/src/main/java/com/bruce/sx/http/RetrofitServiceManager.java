@@ -1,10 +1,17 @@
 package com.bruce.sx.http;
 
+import com.bruce.sx.BuildConfig;
 import com.zs.wanandroid.constants.ApiConstants;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -43,11 +50,39 @@ public class RetrofitServiceManager {
     }
 
     private RetrofitServiceManager() {
+        //打印log
+//        HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor();
+//        if(BuildConfig.DEBUG){
+//            //显示日志
+//            logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+//        }else {
+//            logInterceptor.setLevel(HttpLoggingInterceptor.Level.NONE);
+//        }
+
         okHttpClient = new OkHttpClient.Builder()
 //                .cookieJar(new CookiesManager()) cookiejar
 //                .addInterceptor(myInterceptor) 拦截器
 //                .sslSocketFactory(SSLSocketClient.getSSLSocketFactory()) //身份验证
 //                .hostnameVerifier(SSLSocketClient.getHostnameVerifier())
+//                .addInterceptor(logInterceptor)
+                   .addInterceptor(new LoggingInterceptor())
+//                .addInterceptor(new Interceptor() {
+//
+//                    @Override
+//                    public Response intercept(Chain chain) throws IOException {
+//                        Request originalRequest = chain.request(); //Current Request
+//                        Response response = chain.proceed(originalRequest);
+//                        /** DEBUG STUFF */
+//                        if (BuildConfig.DEBUG) {
+//                            //I am logging the response body in debug mode. When I do this I consume the response (OKHttp only lets you do this once) so i have re-build a new one using the cached body
+//                            String bodyString = response.body().string();
+//                            System.out.println(String.format("Sending request %s with headers %s ", originalRequest.url(), originalRequest.headers()));
+//                            System.out.println(String.format("Got response HTTP %s %s \n\n with body %s \n\n with headers %s ", response.code(), response.message(), bodyString, response.headers()));
+//                            response = response.newBuilder().body(ResponseBody.create(response.body().contentType(), bodyString)).build();
+//                        }
+//                        return response;
+//                    }
+//                })
                 .connectTimeout(DEFAULT_CONNECT_TIME, TimeUnit.SECONDS)
                 .writeTimeout(DEFAULT_WRITE_TIME, TimeUnit.SECONDS)
                 .readTimeout(DEFAULT_READ_TIME, TimeUnit.SECONDS)

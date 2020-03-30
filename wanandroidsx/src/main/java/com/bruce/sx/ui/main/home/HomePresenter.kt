@@ -2,6 +2,8 @@ package com.bruce.sx.ui.main.home
 
 import com.bruce.sx.base.BasePresenter
 import com.bruce.sx.entity.ArticleEntity
+import com.bruce.sx.entity.BannerEntity
+import com.bruce.sx.http.BaseResponse
 import com.bruce.sx.http.HttpCallBack
 import com.bruce.sx.http.HttpManager
 import com.bruce.sx.http.RetrofitServiceManager
@@ -70,12 +72,70 @@ class HomePresenter(view: HomeContract.View) : BasePresenter<HomeContract.View>(
             })
     }
 
+    /**
+     * 由于banner和list位于同一界面
+     * 所以banner在presenter内部请求
+     */
     override fun loadBanner() {
+        HttpManager.doHttpRequest(RetrofitServiceManager.api().getBanner(),
+            object : HttpCallBack<MutableList<BannerEntity>> {
+                override fun success(rspBean: MutableList<BannerEntity>?) {
+                    rspBean?.let { view?.showBanner(it) }
+                }
+
+                override fun error(message: String?) {
+                    view?.onError(message!!)
+                }
+
+                override fun disposable(d: Disposable?) {
+                    if (d != null) {
+                        addSubscribe(d)
+                    }
+                }
+            })
     }
 
+    /**
+     * 收藏
+     */
     override fun collect(id: Int) {
+        HttpManager.doHttpRequest(RetrofitServiceManager.api().collect(id),
+            object : HttpCallBack<BaseResponse<Any>> {
+                override fun error(message: String?) {
+                    view?.onError(message!!)
+                }
+
+                override fun disposable(d: Disposable?) {
+                    if (d != null) {
+                        addSubscribe(d)
+                    }
+                }
+
+                override fun success(rspBean: BaseResponse<Any>?) {
+                    view?.collectSuccess()
+                }
+            })
     }
 
+    /**
+     * 取消收藏
+     */
     override fun unCollect(id: Int) {
+        HttpManager.doHttpRequest(RetrofitServiceManager.api().unCollect(id),
+            object : HttpCallBack<BaseResponse<Any>> {
+                override fun error(message: String?) {
+                    view?.onError(message!!)
+                }
+
+                override fun disposable(d: Disposable?) {
+                    if (d != null) {
+                        addSubscribe(d)
+                    }
+                }
+
+                override fun success(rspBean: BaseResponse<Any>?) {
+                    view?.unCollectSuccess()
+                }
+            })
     }
 }

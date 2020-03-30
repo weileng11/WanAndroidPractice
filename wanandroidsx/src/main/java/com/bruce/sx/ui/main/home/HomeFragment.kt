@@ -2,24 +2,31 @@ package com.bruce.sx.ui.main.home
 
 import android.os.Build
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.LinearLayoutManager
 import cn.bingoogolapple.bgabanner.BGABanner
+import com.bruce.sx.R
 import com.bruce.sx.adapter.ArticleAdapter
 import com.bruce.sx.annotation.BindEventBus
 import com.bruce.sx.base.LazyFragment
 import com.bruce.sx.entity.ArticleEntity
 import com.bruce.sx.entity.BannerEntity
+import com.bruce.sx.proxy.ImageLoad
+import com.bruce.sx.ui.web.WebActivity
+import com.bruce.sx.utils.AppManager
 import com.bruce.sx.utils.ToastUtils
 import com.bruce.sx.weight.ReloadListener
+import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener
 import com.zs.wanandroid.adapter.OnCollectClickListener
+import com.zs.wanandroid.constants.Constants
 import com.zs.wanandroid.event.LoginEvent
 import com.zs.wanandroid.event.LogoutEvent
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -42,7 +49,7 @@ class HomeFragment : LazyFragment<HomeContract.Presenter<HomeContract.View>>(),
     , HomeContract.View, OnLoadMoreListener, OnRefreshListener, ReloadListener
     , BaseQuickAdapter.OnItemClickListener, OnCollectClickListener {
 
-    private var pageNum:Int = 0
+    private var pageNum: Int = 0
     private var articleList = mutableListOf<ArticleEntity.DatasBean>()
     private var bannerList = mutableListOf<BannerEntity>()
     private var articleAdapter: ArticleAdapter? = null
@@ -59,15 +66,10 @@ class HomeFragment : LazyFragment<HomeContract.Presenter<HomeContract.View>>(),
         EventBus.getDefault().register(this)
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun lazyInit() {
         initView()
         loadingTip.loading()
         loadData()
-    }
-
-    override fun lazyInit() {
-
     }
 
     override fun createPresenter(): HomeContract.Presenter<HomeContract.View>? {
@@ -75,11 +77,11 @@ class HomeFragment : LazyFragment<HomeContract.Presenter<HomeContract.View>>(),
     }
 
     override fun getLayoutId(): Int {
-        return com.bruce.sx.R.layout.fragment_home
+        return R.layout.fragment_home
     }
 
     private fun initView() {
-        if (Build.VERSION.SDK_INT>= Build.VERSION_CODES.LOLLIPOP){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             //elevation用以在xml定义View的深度(高度)
             //影响View的阴影
             //影响View相互阻挡顺序
@@ -102,8 +104,8 @@ class HomeFragment : LazyFragment<HomeContract.Presenter<HomeContract.View>>(),
         smartRefresh?.setOnLoadMoreListener(this)
         addScrollListener()
         //搜索点击
-        ivSearch.setOnClickListener{
-//            intent(SearchActivity::class.java,false)
+        ivSearch.setOnClickListener {
+            //            intent(SearchActivity::class.java,false)
 //            //瞬间开启activity，无动画
 //            activity?.overridePendingTransition(0, 0)
 
@@ -116,7 +118,7 @@ class HomeFragment : LazyFragment<HomeContract.Presenter<HomeContract.View>>(),
      */
     private fun loadData() {
         //banner只加载一次
-        if (bannerList.size==0){
+        if (bannerList.size == 0) {
             presenter?.loadBanner()
         }
         articleList.clear()
@@ -129,14 +131,14 @@ class HomeFragment : LazyFragment<HomeContract.Presenter<HomeContract.View>>(),
      * 为NestedScrollView增加滑动事件
      * 改变搜索框的透明度
      */
-    private fun addScrollListener(){
+    private fun addScrollListener() {
         nestedView.setOnScrollChangeListener(
             NestedScrollView.OnScrollChangeListener
             { _, _, scrollY, _, _ ->
-                val alpha = if (scrollY>0){
+                val alpha = if (scrollY > 0) {
                     ivSearch.isEnabled = true
                     scrollY.toFloat() / (300).toFloat()
-                }else{
+                } else {
                     ivSearch.isEnabled = false
                     0f
                 }
@@ -144,30 +146,52 @@ class HomeFragment : LazyFragment<HomeContract.Presenter<HomeContract.View>>(),
             })
     }
 
+    /**
+     * 填充banner
+     */
     override fun fillBannerItem(
         banner: BGABanner?,
         itemView: ImageView?,
         model: String?,
         position: Int
     ) {
+        itemView?.scaleType = ImageView.ScaleType.CENTER_CROP
+        val bannerEntity = bannerList[position]
+        itemView?.let {
+//            Glide.with(this)
+//                .load(bannerEntity.imagePath)
+//                .into(it)
+            ImageLoad.load(it, bannerEntity.imagePath)
+        }
+
     }
 
+    /**
+     * banner点击事件
+     */
     override fun onBannerItemClick(
         banner: BGABanner?,
         itemView: ImageView?,
         model: String?,
         position: Int
     ) {
+        intent(Bundle().apply {
+            putString(Constants.WEB_URL,bannerList[position].url)
+            putString(Constants.WEB_TITLE,bannerList[position].title)
+        },WebActivity::class.java,false)
     }
 
+    /**
+     * 文章列表加载成功
+     */
     override fun showList(list: MutableList<ArticleEntity.DatasBean>) {
         dismissRefresh()
         loadingTip.dismiss()
-        if (list.isNotEmpty()){
+        if (list.isNotEmpty()) {
             articleList.addAll(list)
             articleAdapter?.setNewData(articleList)
-        }else {
-            if (articleList.size==0)loadingTip.showEmpty()
+        } else {
+            if (articleList.size == 0) loadingTip.showEmpty()
             else ToastUtils.show("没有数据啦...")
         }
     }
@@ -183,15 +207,53 @@ class HomeFragment : LazyFragment<HomeContract.Presenter<HomeContract.View>>(),
     }
 
     override fun showBanner(bannerList: MutableList<BannerEntity>) {
+        this.bannerList.addAll(bannerList)
+        initBanner()
     }
 
+    /**
+     * 初始化banner
+     */
+    private fun initBanner() {
+        banner.setAutoPlayAble(true)
+        val views: MutableList<View> = ArrayList()
+        bannerList.forEach { _->
+            views.add(LayoutInflater.from(context).inflate(R.layout.banner_layout,null).findViewById(R.id.ivBanner))
+        }
+        banner.setAdapter(this)
+        banner.setDelegate(this)
+        banner.setData(views)
+    }
+
+    /**
+     * 收藏成功
+     */
     override fun collectSuccess() {
+        lockCollectClick = true
+        if (currentPosition<articleList.size) {
+            articleList[currentPosition].collect = true
+            articleAdapter?.notifyItemChanged(currentPosition)
+        }
     }
 
+    /**
+     * 取消收藏成功
+     */
     override fun unCollectSuccess() {
+        lockCollectClick = true
+        if (currentPosition<articleList.size) {
+            articleList[currentPosition].collect = false
+            articleAdapter?.notifyItemChanged(currentPosition)
+        }
     }
 
     override fun onError(error: String) {
+        lockCollectClick = true
+        //请求失败将page -1
+        if (pageNum>0)pageNum--
+        loadingTip.dismiss()
+        dismissRefresh()
+        ToastUtils.show(error)
     }
 
     /**
@@ -218,10 +280,28 @@ class HomeFragment : LazyFragment<HomeContract.Presenter<HomeContract.View>>(),
     }
 
     override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
+        intent(Bundle().apply {
+            putString(Constants.WEB_URL,articleList[position].link)
+            putString(Constants.WEB_TITLE,articleList[position].title)
+        },WebActivity::class.java,false)
     }
 
 
     override fun onCollectClick(helper: BaseViewHolder, position: Int) {
+        if (!AppManager.isLogin()) {
+            ToastUtils.show("请先登录")
+            return
+        }
+        if (position<articleList.size&&lockCollectClick){
+            lockCollectClick = false
+            //记录当前点击的item
+            currentPosition = position
+            //收藏状态调用取消收藏接口，反之亦然
+            articleList[position].apply {
+                if (collect) presenter?.unCollect(id)
+                else presenter?.collect(id)
+            }
+        }
     }
 
     override fun onDestroy() {
@@ -234,7 +314,7 @@ class HomeFragment : LazyFragment<HomeContract.Presenter<HomeContract.View>>(),
      * 登陆消息，更新收藏状态
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public fun loginEvent(loginEvent: LoginEvent){
+    public fun loginEvent(loginEvent: LoginEvent) {
 
     }
 
@@ -242,7 +322,7 @@ class HomeFragment : LazyFragment<HomeContract.Presenter<HomeContract.View>>(),
      * 退出消息
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public fun logoutEvent(loginEvent: LogoutEvent){
+    public fun logoutEvent(loginEvent: LogoutEvent) {
         articleList.forEach {
             it.collect = false
         }

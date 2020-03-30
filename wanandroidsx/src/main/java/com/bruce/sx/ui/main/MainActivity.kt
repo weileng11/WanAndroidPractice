@@ -111,9 +111,8 @@ class MainActivity : BaseActivity<IBasePresenter<*>>(), IBaseView {
     override fun onError(error: String) {
     }
 
-    var lastTime: Long = 0
+    private var lastTime: Long = 0
     override fun onBackPressed() {
-        super.onBackPressed()
         if (System.currentTimeMillis() - this.lastTime > 2000L) {
             ToastUtils.show("再按一次退出程序")
             this.lastTime = System.currentTimeMillis()

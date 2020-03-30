@@ -17,7 +17,7 @@ abstract class LazyFragment<P: IBasePresenter<*>>: BaseFragment<P>() {
     override fun onResume() {
         super.onResume()
         //增加了Fragment是否可见的判断
-        if(!isLoaded&&isHidden){
+        if(!isLoaded&&!isHidden){
             lazyInit()
             isLoaded = true
         }
@@ -33,3 +33,4 @@ abstract class LazyFragment<P: IBasePresenter<*>>: BaseFragment<P>() {
 
     abstract fun lazyInit()
 }
+
