@@ -1,11 +1,18 @@
 package com.bruce.sx.http;
 
 import com.bruce.sx.BuildConfig;
+import com.bruce.sx.base.WanAndroidApplication;
+import com.franmontiel.persistentcookiejar.ClearableCookieJar;
+import com.franmontiel.persistentcookiejar.PersistentCookieJar;
+import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
+import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 import com.zs.wanandroid.constants.ApiConstants;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Cache;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -59,6 +66,16 @@ public class RetrofitServiceManager {
 //            logInterceptor.setLevel(HttpLoggingInterceptor.Level.NONE);
 //        }
 
+        //文件缓存位置
+        File cacheFile = new File(WanAndroidApplication.Companion.getContext().getCacheDir(), "cache");
+        //100Mb
+        Cache cache = new Cache(cacheFile, 1024 * 1024 * 100);
+
+        //cookjar
+        ClearableCookieJar cookieJar =
+                new PersistentCookieJar(new SetCookieCache(),
+                        new SharedPrefsCookiePersistor(WanAndroidApplication.Companion.getContext()));
+
         okHttpClient = new OkHttpClient.Builder()
 //                .cookieJar(new CookiesManager()) cookiejar
 //                .addInterceptor(myInterceptor) 拦截器
@@ -86,6 +103,8 @@ public class RetrofitServiceManager {
                 .connectTimeout(DEFAULT_CONNECT_TIME, TimeUnit.SECONDS)
                 .writeTimeout(DEFAULT_WRITE_TIME, TimeUnit.SECONDS)
                 .readTimeout(DEFAULT_READ_TIME, TimeUnit.SECONDS)
+                .cookieJar(cookieJar)
+                .cache(cache)
                 .build();
 
         retrofit = new Retrofit.Builder()

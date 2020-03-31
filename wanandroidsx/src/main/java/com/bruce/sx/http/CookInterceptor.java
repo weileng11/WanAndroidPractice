@@ -1,6 +1,11 @@
 package com.bruce.sx.http;
 
+import com.bruce.sx.base.WanAndroidApplication;
 import com.bruce.sx.utils.PrefUtils;
+import com.franmontiel.persistentcookiejar.ClearableCookieJar;
+import com.franmontiel.persistentcookiejar.PersistentCookieJar;
+import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
+import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 import com.zs.wanandroid.constants.Constants;
 
 import java.io.IOException;

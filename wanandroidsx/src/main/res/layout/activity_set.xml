@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/division_line_thickening"
     android:fitsSystemWindows="true"
-    tools:context="com.zs.wanandroid.ui.set.SetActivity">
+    tools:context=".ui.set.SetActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

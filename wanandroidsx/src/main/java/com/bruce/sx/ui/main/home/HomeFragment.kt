@@ -15,6 +15,7 @@ import com.bruce.sx.base.LazyFragment
 import com.bruce.sx.entity.ArticleEntity
 import com.bruce.sx.entity.BannerEntity
 import com.bruce.sx.proxy.ImageLoad
+import com.bruce.sx.ui.search.SearchActivity
 import com.bruce.sx.ui.web.WebActivity
 import com.bruce.sx.utils.AppManager
 import com.bruce.sx.utils.ToastUtils
@@ -105,9 +106,9 @@ class HomeFragment : LazyFragment<HomeContract.Presenter<HomeContract.View>>(),
         addScrollListener()
         //搜索点击
         ivSearch.setOnClickListener {
-            //            intent(SearchActivity::class.java,false)
-//            //瞬间开启activity，无动画
-//            activity?.overridePendingTransition(0, 0)
+                        intent(SearchActivity::class.java,false)
+            //瞬间开启activity，无动画
+            activity?.overridePendingTransition(0, 0)
 
         }
     }

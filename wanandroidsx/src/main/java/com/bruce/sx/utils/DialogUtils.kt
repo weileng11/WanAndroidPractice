@@ -3,6 +3,7 @@ package com.bruce.sx.utils
 import android.app.Dialog
 import android.content.Context
 import android.app.AlertDialog
+import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.widget.TextView
 import com.bruce.sx.R
@@ -29,7 +30,7 @@ class DialogUtils {
                    .setPositiveButton("确定") { _, _ ->
                        callBack?.onClick()
                        dialog?.dismiss()
-                   }.setNegativeButton("取消") { _, _ -> dialog?.dismiss() }
+                   }.setNegativeButton("取消") { dialog:DialogInterface, _:Int -> dialog?.dismiss() }
             dialog = builder.create()
             dialog.show()
         }

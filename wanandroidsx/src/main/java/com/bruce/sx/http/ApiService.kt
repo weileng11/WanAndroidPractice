@@ -8,7 +8,7 @@ import retrofit2.http.*
  * @author: bruce
  * @project: WanAndroidPractice
  * @package: com.bruce.sx.http
- * @description:
+ * @description: https://www.cnblogs.com/weizhxa/p/9875707.html
  * @date: 2020/3/26
  * @time:  17:56
  */

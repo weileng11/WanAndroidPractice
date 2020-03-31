@@ -18,6 +18,12 @@
         android:usesCleartextTraffic="true"
         >
         <activity android:name=".ui.main.system.activity.SystemActivity"></activity>
+        <activity android:name=".ui.register.RegisterActivity" />
+        <activity android:name=".ui.history.HistoryActivity" />
+        <activity android:name=".ui.my.MyArticleActivity" />
+        <activity android:name=".ui.share.ShareArticleActivity" />
+        <activity android:name=".ui.Integral.IntegralActivity" />
+        <activity android:name=".ui.rank.RankActivity" />
         <activity
             android:name=".ui.SplashActivity"
             android:screenOrientation="portrait"
@@ -29,35 +35,35 @@
             </intent-filter>
         </activity>
 
-<!--        <activity-->
-<!--            android:name="ui.set.SetActivity"-->
-<!--            android:launchMode="singleTask"-->
-<!--            android:screenOrientation="portrait" /> &lt;!&ndash; 主界面 &ndash;&gt;-->
+        <activity
+            android:name=".ui.set.SetActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" /> <!-- 主界面 -->
         <activity
             android:name=".ui.main.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" /> <!-- 登陆 -->
-<!--        <activity-->
-<!--            android:name="com.zs.wanandroid.ui.login.LoginActivity"-->
-<!--            android:launchMode="singleTask"-->
-<!--            android:screenOrientation="portrait" /> &lt;!&ndash; web &ndash;&gt;-->
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" /> <!-- web -->
         <activity
             android:name=".ui.web.WebActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" ></activity> <!-- 收藏 -->
-<!--        <activity-->
-<!--            android:name="com.zs.wanandroid.ui.collect.CollectActivity"-->
-<!--            android:launchMode="singleTask"-->
-<!--            android:screenOrientation="portrait" /> &lt;!&ndash; 搜索 &ndash;&gt;-->
-<!--        <activity-->
-<!--            android:name="com.zs.wanandroid.ui.search.SearchActivity"-->
-<!--            android:launchMode="singleTask"-->
-<!--            android:screenOrientation="portrait" /> &lt;!&ndash; 轻松一下 &ndash;&gt;-->
-<!--        <activity-->
-<!--            android:name="com.zs.wanandroid.ui.girl.GirlActivity"-->
-<!--            android:launchMode="singleTask"-->
-<!--            android:screenOrientation="portrait" />-->
-<!--        </activity>-->
+        <activity
+            android:name=".ui.collect.CollectActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" /> <!-- 搜索 -->
+        <activity
+            android:name=".ui.search.SearchActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" /> <!-- 轻松一下 -->
+        <activity
+            android:name=".ui.girl.GirlActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>
