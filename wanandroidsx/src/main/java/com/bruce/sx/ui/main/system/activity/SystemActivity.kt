@@ -6,7 +6,9 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bruce.sx.R
 import com.bruce.sx.adapter.ArticleAdapter
+import com.bruce.sx.adapter.OnCollectClickListener
 import com.bruce.sx.base.BaseActivity
+import com.bruce.sx.constants.Constants
 import com.bruce.sx.entity.ArticleEntity
 import com.bruce.sx.ui.web.WebActivity
 import com.bruce.sx.utils.ToastUtils
@@ -16,15 +18,13 @@ import com.chad.library.adapter.base.BaseViewHolder
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener
-import com.zs.wanandroid.adapter.OnCollectClickListener
-import com.zs.wanandroid.constants.Constants
 import kotlinx.android.synthetic.main.activity_system.*
 
 /**
  * @author: bruce
  * @project: WanAndroidPractice
  * @package: com.bruce.sx.ui.main.system.activity
- * @description:
+ * @description:体系
  * @date: 2020/3/30
  * @time:  15:34
  */
@@ -45,9 +45,11 @@ class SystemActivity : BaseActivity<SystemContract.Presenter<SystemContract.View
     private var lockCollectClick = true
 
     override fun init(savedInstanceState: Bundle?) {
-        val bundle: Bundle? = intent.extras
-        cid = bundle?.getInt(Constants.SYSTEM_ID)
-        title = bundle?.getString(Constants.SYSTEM_TITLE)
+        intent.extras?.apply {
+            cid = getInt(Constants.SYSTEM_ID)
+            title = getString(Constants.SYSTEM_TITLE)
+        }
+
         initView()
         loadingTip.loading()
         loadData()
@@ -78,6 +80,7 @@ class SystemActivity : BaseActivity<SystemContract.Presenter<SystemContract.View
         systemAdapter?.setNewData(systemList)
         pageNum = 0
         cid?.let { presenter?.loadData(pageNum, it) }
+//        presenter?.loadData(pageNum,cid!!)
     }
 
     override fun showList(list: MutableList<ArticleEntity.DatasBean>) {

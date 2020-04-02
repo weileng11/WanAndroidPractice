@@ -16,9 +16,7 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter
 
 
 /**
- * des app
- * @author zs
- * @date 2020-03-05
+ * application
  */
 class WanAndroidApplication : Application() {
 

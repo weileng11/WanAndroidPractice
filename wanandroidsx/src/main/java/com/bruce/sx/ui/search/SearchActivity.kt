@@ -15,7 +15,9 @@ import android.widget.RelativeLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bruce.sx.R
 import com.bruce.sx.adapter.ArticleAdapter
+import com.bruce.sx.adapter.OnCollectClickListener
 import com.bruce.sx.base.BaseActivity
+import com.bruce.sx.constants.Constants
 import com.bruce.sx.entity.ArticleEntity
 import com.bruce.sx.proxy.IConfirmClickCallBack
 import com.bruce.sx.ui.web.WebActivity
@@ -25,8 +27,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
-import com.zs.wanandroid.adapter.OnCollectClickListener
-import com.zs.wanandroid.constants.Constants
 import kotlinx.android.synthetic.main.activity_search.*
 
 /**

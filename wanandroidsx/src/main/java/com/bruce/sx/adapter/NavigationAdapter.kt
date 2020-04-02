@@ -5,7 +5,6 @@ import com.bruce.sx.entity.NavigationEntity
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.donkingliang.labels.LabelsView
-import com.zs.wanandroid.adapter.OnSystemClickListener
 
 
 /**

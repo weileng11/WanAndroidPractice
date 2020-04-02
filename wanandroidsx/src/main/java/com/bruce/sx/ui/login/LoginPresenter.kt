@@ -1,17 +1,14 @@
 package com.bruce.sx.ui.login
 
 import com.bruce.sx.base.BasePresenter
-import com.bruce.sx.entity.TabEntity
+import com.bruce.sx.constants.Constants
 import com.bruce.sx.entity.UserEntity
+import com.bruce.sx.event.LoginEvent
 import com.bruce.sx.http.HttpCallBack
 import com.bruce.sx.http.HttpManager
 import com.bruce.sx.http.RetrofitServiceManager
 import com.bruce.sx.utils.PrefUtils
-import com.zs.wanandroid.constants.Constants
-import com.zs.wanandroid.event.LoginEvent
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 import org.greenrobot.eventbus.EventBus
 
 /**

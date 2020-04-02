@@ -5,11 +5,11 @@ import android.os.Bundle
 import android.view.View
 import com.bruce.sx.R
 import com.bruce.sx.base.BaseActivity
+import com.bruce.sx.constants.Constants
 import com.bruce.sx.proxy.IConfirmClickCallBack
 import com.bruce.sx.ui.login.LoginActivity
 import com.bruce.sx.ui.web.WebActivity
 import com.bruce.sx.utils.*
-import com.zs.wanandroid.constants.Constants
 import kotlinx.android.synthetic.main.activity_set.*
 
 /**

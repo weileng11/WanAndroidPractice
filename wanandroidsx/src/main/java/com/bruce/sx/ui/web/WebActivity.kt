@@ -8,7 +8,7 @@ import android.webkit.*
 import com.bruce.sx.R
 import com.bruce.sx.base.BaseActivity
 import com.bruce.sx.base.IBasePresenter
-import com.zs.wanandroid.constants.Constants
+import com.bruce.sx.constants.Constants
 import kotlinx.android.synthetic.main.activity_web.*
 
 /**

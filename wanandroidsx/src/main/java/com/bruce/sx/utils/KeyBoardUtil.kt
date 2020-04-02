@@ -4,17 +4,13 @@ import android.content.Context
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 
-/**
- * @author zs
- * @date 2020-03-18
- */
 class KeyBoardUtil private constructor() {
     companion object {
         /**
          * 打卡软键盘
          */
         fun openKeyboard(mEditText: EditText?, mContext: Context) {
-            val imm =
+            val imm :InputMethodManager=
                 mContext.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.showSoftInput(mEditText, InputMethodManager.RESULT_SHOWN)
             imm.toggleSoftInput(

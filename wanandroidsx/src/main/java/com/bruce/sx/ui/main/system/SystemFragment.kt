@@ -9,11 +9,10 @@ import com.bruce.sx.adapter.FragmentListAdapter
 import com.bruce.sx.adapter.TabAdapter
 import com.bruce.sx.base.BaseFragment
 import com.bruce.sx.base.IBasePresenter
-import com.bruce.sx.base.LazyFragment
+import com.bruce.sx.constants.Constants
 import com.bruce.sx.ui.main.system.list.SystemListFragment
 import com.bruce.sx.ui.main.system.navigaton.NavigationFragment
 import com.bruce.sx.weight.indicator.OnTabClickListener
-import com.zs.wanandroid.constants.Constants
 import kotlinx.android.synthetic.main.fragment_system.*
 import net.lucode.hackware.magicindicator.ViewPagerHelper
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator
@@ -63,6 +62,7 @@ class SystemFragment : BaseFragment<IBasePresenter<*>>(), OnTabClickListener {
         //tab点击事件
         tabAdapter.setOnTabClickListener(this)
         commonNavigator.adapter = tabAdapter
+        //下标
         magicView.navigator = commonNavigator
         //将magicView和viewPager进行绑定
         ViewPagerHelper.bind(magicView,viewPager)

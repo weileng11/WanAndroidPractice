@@ -5,7 +5,9 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bruce.sx.R
 import com.bruce.sx.adapter.ArticleAdapter
+import com.bruce.sx.adapter.OnCollectClickListener
 import com.bruce.sx.base.LazyFragment
+import com.bruce.sx.constants.Constants
 import com.bruce.sx.entity.ArticleEntity
 import com.bruce.sx.ui.web.WebActivity
 import com.bruce.sx.utils.AppManager
@@ -16,8 +18,6 @@ import com.chad.library.adapter.base.BaseViewHolder
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener
-import com.zs.wanandroid.adapter.OnCollectClickListener
-import com.zs.wanandroid.constants.Constants
 import kotlinx.android.synthetic.main.fragment_article_list.*
 import kotlinx.android.synthetic.main.fragment_home.loadingTip
 import kotlinx.android.synthetic.main.fragment_home.smartRefresh

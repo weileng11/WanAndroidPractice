@@ -4,6 +4,7 @@ import android.text.Html
 import android.text.TextUtils
 import android.widget.ImageView
 import com.bruce.sx.R
+import com.bruce.sx.constants.Constants
 import com.bruce.sx.entity.ArticleEntity
 import com.bruce.sx.proxy.ImageLoad
 import com.bruce.sx.utils.ColorUtils
@@ -11,8 +12,6 @@ import com.bruce.sx.weight.OnLimitClickHelper
 import com.bruce.sx.weight.OnLimitClickListener
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
-import com.zs.wanandroid.adapter.OnCollectClickListener
-import com.zs.wanandroid.constants.Constants
 
 /**
  * 文章适配器
@@ -31,7 +30,7 @@ class ArticleAdapter(list:MutableList<ArticleEntity.DatasBean>)
     fun setCollectClickListener(collectClickListener:OnCollectClickListener){
         this.collectClickListener = collectClickListener
     }
-
+    //let,with,run,apply,also函数区别 https://blog.csdn.net/u013064109/article/details/78786646
     override fun convert(helper: BaseViewHolder, item: ArticleEntity.DatasBean?) {
         when(helper.itemViewType){
             //不带图片

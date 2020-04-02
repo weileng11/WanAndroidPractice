@@ -1,13 +1,12 @@
 package com.bruce.sx.ui.main.mine
 
 import com.bruce.sx.base.BasePresenter
+import com.bruce.sx.constants.Constants
 import com.bruce.sx.entity.IntegralEntity
-import com.bruce.sx.entity.SystemListEntity
 import com.bruce.sx.http.HttpCallBack
 import com.bruce.sx.http.HttpManager
 import com.bruce.sx.http.RetrofitServiceManager
 import com.bruce.sx.utils.PrefUtils
-import com.zs.wanandroid.constants.Constants
 import io.reactivex.disposables.Disposable
 
 /**

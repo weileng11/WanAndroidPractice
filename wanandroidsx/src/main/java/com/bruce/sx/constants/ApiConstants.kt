@@ -1,4 +1,4 @@
-package com.zs.wanandroid.constants
+package com.bruce.sx.constants
 
 object ApiConstants {
     //1.const只能修饰val，不能修饰var类型变量

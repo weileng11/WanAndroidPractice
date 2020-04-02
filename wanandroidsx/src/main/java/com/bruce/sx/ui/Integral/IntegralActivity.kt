@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bruce.sx.R
 import com.bruce.sx.adapter.IntegralAdapter
 import com.bruce.sx.base.BaseActivity
+import com.bruce.sx.constants.Constants
 import com.bruce.sx.entity.IntegralEntity
 import com.bruce.sx.entity.IntegralRecordEntity
 import com.bruce.sx.utils.PrefUtils
@@ -16,7 +17,6 @@ import com.bruce.sx.utils.ToastUtils
 import com.bruce.sx.weight.ReloadListener
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
-import com.zs.wanandroid.constants.Constants
 import kotlinx.android.synthetic.main.activity_integral.*
 
 /**
@@ -30,7 +30,7 @@ import kotlinx.android.synthetic.main.activity_integral.*
 class IntegralActivity : BaseActivity<IntegralContract.Presenter<IntegralContract.View>>()
     ,IntegralContract.View , OnLoadMoreListener, ReloadListener {
 
-    private var integralRecordEntity: IntegralRecordEntity? = null;
+    private var integralRecordEntity: IntegralRecordEntity? = null
     private var integralAdapter: IntegralAdapter? = null
     private var integralEntity: IntegralEntity? = null
     private var integralList = mutableListOf<IntegralRecordEntity.DatasBean>()

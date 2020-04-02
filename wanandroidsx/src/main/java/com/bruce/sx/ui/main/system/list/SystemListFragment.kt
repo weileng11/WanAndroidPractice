@@ -3,14 +3,14 @@ package com.bruce.sx.ui.main.system.list
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bruce.sx.R
+import com.bruce.sx.adapter.OnSystemClickListener
 import com.bruce.sx.adapter.SystemAdapter
 import com.bruce.sx.base.LazyFragment
+import com.bruce.sx.constants.Constants
 import com.bruce.sx.entity.SystemListEntity
 import com.bruce.sx.ui.main.system.activity.SystemActivity
 import com.bruce.sx.utils.ToastUtils
 import com.chad.library.adapter.base.BaseViewHolder
-import com.zs.wanandroid.adapter.OnSystemClickListener
-import com.zs.wanandroid.constants.Constants
 import kotlinx.android.synthetic.main.fragment_system_list.*
 
 /**

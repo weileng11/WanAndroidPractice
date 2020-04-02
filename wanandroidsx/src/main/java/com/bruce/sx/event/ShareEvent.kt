@@ -1,4 +1,4 @@
-package com.zs.wanandroid.event
+package com.bruce.sx.event
 
 class ShareEvent {
 }

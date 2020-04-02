@@ -1,6 +1,5 @@
 package com.bruce.sx.adapter
 
-import android.view.View
 import android.widget.ImageView
 import com.bruce.sx.R
 import com.bruce.sx.entity.CollectEntity
@@ -8,13 +7,9 @@ import com.bruce.sx.weight.OnLimitClickHelper
 import com.bruce.sx.weight.OnLimitClickListener
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
-import com.zs.wanandroid.adapter.OnCollectClickListener
 
 /**
  * des 收藏适配器
- *
- * @author zs
- * @date 2020-03-13
  */
 class CollectAdapter(layoutId:Int):BaseQuickAdapter<CollectEntity.DatasBean,BaseViewHolder>(layoutId){
 

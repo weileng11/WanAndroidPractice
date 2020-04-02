@@ -83,4 +83,7 @@ dependencies {
     implementation 'pub.devrel:easypermissions:3.0.0'
     implementation 'com.github.donkingliang:LabelsView:1.6.1'
     implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
+
+    // logger
+    implementation 'com.hjq:logcat:6.0'
 }

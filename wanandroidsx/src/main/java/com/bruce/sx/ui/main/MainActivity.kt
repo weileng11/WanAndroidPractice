@@ -9,12 +9,12 @@ import com.bruce.sx.R
 import com.bruce.sx.base.BaseActivity
 import com.bruce.sx.base.IBasePresenter
 import com.bruce.sx.base.IBaseView
+import com.bruce.sx.constants.Constants
 import com.bruce.sx.ui.main.home.HomeFragment
 import com.bruce.sx.ui.main.mine.MineFragment
 import com.bruce.sx.ui.main.system.SystemFragment
 import com.bruce.sx.ui.main.tab.TabFragment
 import com.bruce.sx.utils.ToastUtils
-import com.zs.wanandroid.constants.Constants
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**

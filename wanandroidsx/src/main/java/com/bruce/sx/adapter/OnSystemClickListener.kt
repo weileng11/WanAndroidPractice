@@ -1,4 +1,4 @@
-package com.zs.wanandroid.adapter
+package com.bruce.sx.adapter
 
 import com.chad.library.adapter.base.BaseViewHolder
 

@@ -1,12 +1,11 @@
 package com.bruce.sx.ui.main.tab
 
 import com.bruce.sx.base.BasePresenter
-import com.bruce.sx.entity.BannerEntity
+import com.bruce.sx.constants.Constants
 import com.bruce.sx.entity.TabEntity
 import com.bruce.sx.http.HttpCallBack
 import com.bruce.sx.http.HttpManager
 import com.bruce.sx.http.RetrofitServiceManager
-import com.zs.wanandroid.constants.Constants
 import io.reactivex.disposables.Disposable
 
 /**

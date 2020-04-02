@@ -1,7 +1,7 @@
 package com.bruce.sx.entity
 
+import com.bruce.sx.constants.Constants
 import com.chad.library.adapter.base.entity.MultiItemEntity
-import com.zs.wanandroid.constants.Constants
 
 class ArticleEntity {
     /**

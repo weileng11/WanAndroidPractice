@@ -6,6 +6,7 @@ import com.bruce.sx.ui.main.MainActivity
 import com.bruce.sx.R
 import com.bruce.sx.base.BaseActivity
 import com.bruce.sx.base.IBasePresenter
+import com.bruce.sx.pattern.SingleClass
 import com.bruce.sx.proxy.IConfirmClickCallBack
 import com.bruce.sx.utils.DialogUtils
 import io.reactivex.Observable

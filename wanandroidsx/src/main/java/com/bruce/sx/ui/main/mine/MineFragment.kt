@@ -5,7 +5,10 @@ import android.view.View
 import com.bruce.sx.R
 import com.bruce.sx.base.IBasePresenter
 import com.bruce.sx.base.LazyFragment
+import com.bruce.sx.constants.Constants
 import com.bruce.sx.entity.IntegralEntity
+import com.bruce.sx.event.LoginEvent
+import com.bruce.sx.event.LogoutEvent
 import com.bruce.sx.ui.Integral.IntegralActivity
 import com.bruce.sx.ui.collect.CollectActivity
 import com.bruce.sx.ui.girl.GirlActivity
@@ -17,9 +20,6 @@ import com.bruce.sx.ui.web.WebActivity
 import com.bruce.sx.utils.AppManager
 import com.bruce.sx.utils.PrefUtils
 import com.bruce.sx.utils.ToastUtils
-import com.zs.wanandroid.constants.Constants
-import com.zs.wanandroid.event.LoginEvent
-import com.zs.wanandroid.event.LogoutEvent
 import kotlinx.android.synthetic.main.fragment_mine.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -50,6 +50,7 @@ class MineFragment : LazyFragment<MineContract.Presenter<MineContract.View>>(),V
         }
         if (integralEntity==null){
             if (AppManager.isLogin()) {
+                //信息
                 presenter?.loadIntegral()
             }
         }else{

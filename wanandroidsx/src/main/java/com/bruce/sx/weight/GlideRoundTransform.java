@@ -12,6 +12,9 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 
 import java.security.MessageDigest;
 
+/**
+ * Glide加载圆角图片
+ */
 public class GlideRoundTransform extends CenterCrop {
 
     private static float radius = 10f;

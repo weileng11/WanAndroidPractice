@@ -10,26 +10,25 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import cn.bingoogolapple.bgabanner.BGABanner
 import com.bruce.sx.R
 import com.bruce.sx.adapter.ArticleAdapter
+import com.bruce.sx.adapter.OnCollectClickListener
 import com.bruce.sx.annotation.BindEventBus
 import com.bruce.sx.base.LazyFragment
+import com.bruce.sx.constants.Constants
 import com.bruce.sx.entity.ArticleEntity
 import com.bruce.sx.entity.BannerEntity
+import com.bruce.sx.event.LoginEvent
+import com.bruce.sx.event.LogoutEvent
 import com.bruce.sx.proxy.ImageLoad
 import com.bruce.sx.ui.search.SearchActivity
 import com.bruce.sx.ui.web.WebActivity
 import com.bruce.sx.utils.AppManager
 import com.bruce.sx.utils.ToastUtils
 import com.bruce.sx.weight.ReloadListener
-import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener
-import com.zs.wanandroid.adapter.OnCollectClickListener
-import com.zs.wanandroid.constants.Constants
-import com.zs.wanandroid.event.LoginEvent
-import com.zs.wanandroid.event.LogoutEvent
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -86,6 +85,10 @@ class HomeFragment : LazyFragment<HomeContract.Presenter<HomeContract.View>>(),
             //elevation用以在xml定义View的深度(高度)
             //影响View的阴影
             //影响View相互阻挡顺序
+            //http://blog.csdn.net/njtuzhang/article/details/51580913
+            //1、控件必须有设置 background ，且不能为透明
+            //2、阴影是绘制于父控件上的，所以控件与父控件的边界之间需有足够空间绘制出阴影才行。
+            //3、如果不设置 background 的话，可以添加 android:outlineProvider="bounds
             rlSearch.elevation = 10f
             llRadius.elevation = 20f
             //滑动时候不能点击
@@ -216,12 +219,15 @@ class HomeFragment : LazyFragment<HomeContract.Presenter<HomeContract.View>>(),
      * 初始化banner
      */
     private fun initBanner() {
+        //播放banner
         banner.setAutoPlayAble(true)
-        val views: MutableList<View> = ArrayList()
+//        val views:MutableList<View> = ArrayList()
+        val views= mutableListOf<View>()
         bannerList.forEach { _->
             views.add(LayoutInflater.from(context).inflate(R.layout.banner_layout,null).findViewById(R.id.ivBanner))
         }
         banner.setAdapter(this)
+        //banner点击事件
         banner.setDelegate(this)
         banner.setData(views)
     }

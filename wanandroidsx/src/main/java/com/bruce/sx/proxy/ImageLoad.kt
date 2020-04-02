@@ -13,19 +13,19 @@ import com.bumptech.glide.request.transition.DrawableCrossFadeFactory
  * @author: bruce
  * @project: WanAndroidPractice
  * @package: com.bruce.sx.proxy
- * @description:
+ * @description:Glide处理
  * @date: 2020/3/26
  * @time:  16:08
  */
 class ImageLoad {
-    companion object{
+    companion object {
 
         /**
          * 默认加载
          */
-        fun load(imageView: ImageView, url:String?){
-            val factory =
-                DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build()
+        fun load(imageView: ImageView, url: String?) {
+//            val factory =
+//                DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build()
             url.let {
                 Glide.with(imageView.context)
                     .load(url)
@@ -43,7 +43,7 @@ class ImageLoad {
          * 辜负了您对我的栽培和厚望，于此我感到非常的羞愧。睡醒后本应该和赵老师谈谈情说说爱，不料自己记性太差，
          * 忘记睡前说的话，于此我感到非常懊恼。面对今天的错误，我将作出深刻的检讨，保证以后绝不再犯，如有再犯绝不姑息。
          */
-        fun loadRadius(imageView: ImageView, url:String?, round:Int){
+        fun loadRadius(imageView: ImageView, url: String?, round: Int) {
 
             val factory =
                 DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build()
@@ -52,7 +52,7 @@ class ImageLoad {
                     .load(url)
                     .centerCrop()
                     .transition(DrawableTransitionOptions.withCrossFade())
-                    .transform(GlideRoundTransform(imageView.context,round))
+                    .transform(GlideRoundTransform(imageView.context, round))
                     //.placeholder(R.mipmap.internet_error)
                     .into(imageView)
             }
@@ -62,7 +62,7 @@ class ImageLoad {
         /**
          * 加载圆形图片
          */
-        fun loadRound(imageView: ImageView, url:String, round:Int){
+        fun loadRound(imageView: ImageView, url: String, round: Int) {
             val factory =
                 DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build()
             Glide.with(imageView.context)
@@ -77,8 +77,8 @@ class ImageLoad {
         /**
          * 清除缓存
          */
-        fun clearCache(){
-             Glide.get(WanAndroidApplication.context!!).clearMemory()
+        fun clearCache() {
+            Glide.get(WanAndroidApplication.context!!).clearMemory()
             System.gc()
         }
     }

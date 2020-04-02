@@ -33,6 +33,8 @@ public class HttpManager {
                     public void accept(BaseResponse listRspBean) throws Exception {
                         Logger.d("INFO", "网络返回"+listRspBean.toString());
                         callBack.success(listRspBean.getData());
+//                        listRspBean.getErrorCode();
+//                        listRspBean.getErrorMsg();
                     }
                 }, new Consumer<Throwable>() {
                     @Override

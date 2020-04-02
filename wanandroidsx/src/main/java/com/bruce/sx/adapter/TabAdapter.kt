@@ -1,6 +1,7 @@
 package com.bruce.sx.adapter
 
 import android.content.Context
+import android.view.View
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import com.bruce.sx.R
@@ -45,6 +46,7 @@ class TabAdapter(tabList: MutableList<String>) : CommonNavigatorAdapter(){
         simplePagerTitleView.setOnClickListener {
             onTabClickListener?.onTabClick(it,index)
         }
+
         //选中结果后将字体加粗
         simplePagerTitleView.setSelectListener(object : ZsSimplePagerTitleView.SelectListener{
             override fun onSelect(index: Int, totalCount: Int) {
@@ -66,14 +68,15 @@ class TabAdapter(tabList: MutableList<String>) : CommonNavigatorAdapter(){
 
     //下标动画
     override fun getIndicator(context: Context?): IPagerIndicator {
-        val indicator = LinePagerIndicator(context)
-        indicator.mode = LinePagerIndicator.MODE_EXACTLY
-        indicator.lineHeight = UIUtil.dip2px(context, 3.0).toFloat()
-        indicator.lineWidth = UIUtil.dip2px(context, 20.0).toFloat()
-        indicator.roundRadius = UIUtil.dip2px(context, 3.0).toFloat()
-        indicator.startInterpolator = AccelerateInterpolator()
-        indicator.endInterpolator = DecelerateInterpolator(2.0f)
-        indicator.setColors(ColorUtils.parseColor(R.color.theme))
+        val indicator = LinePagerIndicator(context).apply {
+            mode = LinePagerIndicator.MODE_EXACTLY
+            lineHeight = UIUtil.dip2px(context, 3.0).toFloat()
+            lineWidth = UIUtil.dip2px(context, 20.0).toFloat()
+            roundRadius = UIUtil.dip2px(context, 3.0).toFloat()
+            startInterpolator = AccelerateInterpolator()
+            endInterpolator = DecelerateInterpolator(2.0f)
+            setColors(ColorUtils.parseColor(R.color.theme))
+        }
         return indicator
     }
 }

@@ -7,10 +7,10 @@ import android.text.method.PasswordTransformationMethod
 import android.view.View
 import com.bruce.sx.R
 import com.bruce.sx.base.BaseActivity
+import com.bruce.sx.constants.Constants
 import com.bruce.sx.ui.register.RegisterActivity
 import com.bruce.sx.utils.PrefUtils
 import com.bruce.sx.utils.ToastUtils
-import com.zs.wanandroid.constants.Constants
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_register.etPassword
 import kotlinx.android.synthetic.main.activity_register.etUsername
@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.activity_register.ivPasswordVisibility
  * @author: bruce
  * @project: WanAndroidPractice
  * @package: com.bruce.sx.ui.login
- * @description:
+ * @description:登录
  * @date: 2020/3/26
  * @time:  15:27
  */

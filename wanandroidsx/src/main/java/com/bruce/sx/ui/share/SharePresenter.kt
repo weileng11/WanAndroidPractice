@@ -1,10 +1,10 @@
 package com.bruce.sx.ui.share
 
 import com.bruce.sx.base.BasePresenter
+import com.bruce.sx.event.ShareEvent
 import com.bruce.sx.http.HttpCallBack
 import com.bruce.sx.http.HttpManager
 import com.bruce.sx.http.RetrofitServiceManager
-import com.zs.wanandroid.event.ShareEvent
 import io.reactivex.disposables.Disposable
 import org.greenrobot.eventbus.EventBus
 

@@ -8,8 +8,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bruce.sx.R
 import com.bruce.sx.adapter.MyArticleAdapter
 import com.bruce.sx.base.BaseActivity
+import com.bruce.sx.constants.Constants
 import com.bruce.sx.entity.ArticleEntity
 import com.bruce.sx.entity.MyArticleEntity
+import com.bruce.sx.event.ShareEvent
 import com.bruce.sx.ui.share.ShareArticleActivity
 import com.bruce.sx.ui.web.WebActivity
 import com.bruce.sx.utils.ToastUtils
@@ -18,8 +20,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener
-import com.zs.wanandroid.constants.Constants
-import com.zs.wanandroid.event.ShareEvent
 import kotlinx.android.synthetic.main.activity_my_article.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe

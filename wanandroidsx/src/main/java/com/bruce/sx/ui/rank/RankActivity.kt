@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bruce.sx.R
 import com.bruce.sx.adapter.RankAdapter
 import com.bruce.sx.base.BaseActivity
+import com.bruce.sx.constants.Constants
 import com.bruce.sx.entity.RankEntity
 import com.bruce.sx.ui.web.WebActivity
 import com.bruce.sx.utils.ToastUtils
@@ -14,7 +15,6 @@ import com.bruce.sx.weight.ReloadListener
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener
-import com.zs.wanandroid.constants.Constants
 import kotlinx.android.synthetic.main.activity_rank.*
 
 /**

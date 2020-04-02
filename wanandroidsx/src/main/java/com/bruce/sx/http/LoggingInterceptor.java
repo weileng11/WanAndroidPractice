@@ -1,7 +1,5 @@
 package com.bruce.sx.http;
 
-import com.orhanobut.logger.Logger;
-
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.UnsupportedCharsetException;

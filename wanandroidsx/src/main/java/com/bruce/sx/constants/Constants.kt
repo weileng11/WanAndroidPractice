@@ -1,17 +1,18 @@
-package com.zs.wanandroid.constants
+package com.bruce.sx.constants
 
 /**
  * des 存储常量
- *
- * @author zs
- * @date 2020-03-09
+ * const一种是直接使用类访问。说明const关键字实际上相当于java的static final。
+需要注意的是，Const只能是kotlin的string和基本类型。
+其实const相当于@JvmField注解，比如下面的代码 https://blog.csdn.net/ilovewqf/article/details/78826373
  */
 object Constants {
     const val DEFAULT_TIMEOUT = 10000
     /**
      * 项目/公众号公用一套逻辑。项目标记
      */
-    const val PROJECT_TYPE = 10
+    @JvmField
+    val PROJECT_TYPE = 10
     /**
      * 项目/公众号公用一套逻辑。公众号标记
      */

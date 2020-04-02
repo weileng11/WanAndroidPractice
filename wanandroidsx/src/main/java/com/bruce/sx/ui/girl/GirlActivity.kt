@@ -7,8 +7,8 @@ import com.bruce.sx.adapter.FragmentListAdapter
 import com.bruce.sx.base.BaseActivity
 import com.bruce.sx.base.IBasePresenter
 import com.bruce.sx.base.IBaseView
+import com.bruce.sx.constants.Constants
 import com.bruce.sx.utils.StatusUtils
-import com.zs.wanandroid.constants.Constants
 import kotlinx.android.synthetic.main.activity_girl.*
 
 /**

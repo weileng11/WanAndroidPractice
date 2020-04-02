@@ -6,8 +6,8 @@ import io.reactivex.disposables.Disposable;
  * @author: bruce
  * @project: WanAndroidPractice
  * @package: com.bruce.sx.http
- * @description:
- * @date: 2020/3/27
+ * @description:回调类
+ * * @date: 2020/3/27
  * @time: 10:00
  */
 public interface HttpCallBack<T> {

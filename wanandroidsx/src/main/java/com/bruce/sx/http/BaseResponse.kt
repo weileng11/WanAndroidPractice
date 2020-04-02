@@ -4,7 +4,7 @@ package com.bruce.sx.http
  * @author: bruce
  * @project: WanAndroidPractice
  * @package: com.bruce.sx.http
- * @description:
+ * @description:返回bean
  * @date: 2020/3/26
  * @time:  17:56
  */

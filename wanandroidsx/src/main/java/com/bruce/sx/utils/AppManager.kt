@@ -1,10 +1,10 @@
 package com.bruce.sx.utils
 
-import com.zs.wanandroid.constants.Constants
-import com.zs.wanandroid.event.LogoutEvent
 import org.greenrobot.eventbus.EventBus
 import android.content.ClipboardManager
 import android.content.Context
+import com.bruce.sx.constants.Constants
+import com.bruce.sx.event.LogoutEvent
 
 
 /**
