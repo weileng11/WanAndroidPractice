@@ -17,6 +17,8 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter
 
 /**
  * application
+ * //执行过程,先执行伴生对象里面的init，在执行外面的init，
+ * 在执行构造函数constructor里面的值,最后执行oncreate
  */
 class WanAndroidApplication : Application() {
 
@@ -24,6 +26,10 @@ class WanAndroidApplication : Application() {
         super.onCreate()
         baseApplication = this
         context = applicationContext
+    }
+
+    init {
+
     }
 
     companion object {
