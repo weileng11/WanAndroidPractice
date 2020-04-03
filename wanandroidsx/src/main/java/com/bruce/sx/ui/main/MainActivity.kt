@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.activity_main.*
  * @author: bruce
  * @project: WanAndroidPractice
  * @package: com.bruce.sx.ui.main
- * @description:主页
+ * @description:主页 （盛夏的果实）
  * @date: 2020/3/26
  * @time:  11:28
  */
