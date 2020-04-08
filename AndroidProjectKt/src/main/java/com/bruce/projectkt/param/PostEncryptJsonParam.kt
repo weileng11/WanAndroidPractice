@@ -1,4 +1,4 @@
-package com.example.httpsender.param
+package com.bruce.projectkt.param
 
 
 import okhttp3.RequestBody

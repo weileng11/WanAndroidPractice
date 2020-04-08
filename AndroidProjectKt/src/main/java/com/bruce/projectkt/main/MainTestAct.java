@@ -29,7 +29,8 @@ import rxhttp.wrapper.param.RxHttp;
  * @author: MainTestAct
  * @project: WanAndroidPractice
  * @package: com.bruce.projectkt.main
- * @description:
+ * @description: https://github.com/liujingxing/okhttp-RxHttp/wiki
+ * Rxhttp 协程
  * @date: 2020/4/8
  * @time: 10:04
  */
@@ -66,7 +67,6 @@ public class MainTestAct extends AppCompatActivity implements View.OnClickListen
             case R.id.btIntegral:
                 sendbtIntegralForm();
                 break;
-
             case R.id.btIntegralRecord:
                 sendbtIntegralRecordForm();
                 break;

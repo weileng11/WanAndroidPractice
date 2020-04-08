@@ -71,10 +71,14 @@ public class TokenInterceptor implements Interceptor {
         } catch (Exception ignore) {
         }
         //请求时间小于token刷新时间，说明token已经刷新，则无需再次刷新
-        if (requestTime <= SESSION_KEY_REFRESH_TIME) return true;
+        if (requestTime <= SESSION_KEY_REFRESH_TIME) {
+            return true;
+        }
         synchronized (this) {
             //再次判断是否已经刷新
-            if (requestTime <= SESSION_KEY_REFRESH_TIME) return true;
+            if (requestTime <= SESSION_KEY_REFRESH_TIME) {
+                return true;
+            }
             try {
                 //获取到最新的token，这里需要同步请求token,千万不能异步  5、根据自己的业务修改
                 String token = RxHttp.postForm("/refreshToken/...")

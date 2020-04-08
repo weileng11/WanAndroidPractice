@@ -1,4 +1,4 @@
-package com.example.httpsender.parser
+package com.bruce.projectkt.parser
 
 import com.bruce.projectkt.entity.PageList
 import com.bruce.projectkt.entity.Response
