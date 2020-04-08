@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 29
@@ -14,6 +15,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -21,6 +23,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
     }
 
 }
@@ -36,4 +42,28 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation project(path: ':base')
 
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    //kotlin协程 https://juejin.im/post/5e77604fe51d4527066eb81a
+    //管理RxJava及生命周期，Activity/Fragment 销毁，自动关闭未完成的请求
+    implementation 'com.rxjava.rxlife:rxlife-x:2.0.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+
+//    implementation project(":rxhttp")
+//    kapt project(':rxhttp-compiler')
+
+
+//    rxhttp_version=2.1.1
+//    rxhttp_next_version=2.1.2
+//    rxhttp_converter_version=2.1.1
+
+    implementation "com.github.franmontiel:PersistentCookieJar:v1.0.1"
+
+    implementation "com.rxjava.rxhttp:rxhttp:2.1.1"
+    kapt "com.rxjava.rxhttp:rxhttp-compiler:2.1.1"
+
+    implementation "com.rxjava.rxhttp:converter-jackson:2.1.1"
+    implementation "com.rxjava.rxhttp:converter-fastjson:2.1.1"
+    implementation "com.rxjava.rxhttp:converter-protobuf:2.1.1"
+    implementation "com.rxjava.rxhttp:converter-simplexml:2.1.1"
 }
