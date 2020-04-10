@@ -81,13 +81,13 @@ class MainKtTestAct : AppCompatActivity(), View.OnClickListener {
             }
 
         }, {
-            it.message
-            it.cause
+//            it.message
+//            it.cause
             //出现异常，就会到这里，这里的it为Throwable类型
             Toast.makeText(this, "发送失败,请稍后再试", Toast.LENGTH_SHORT).show()
         })
 
-        job.cancel()
+//        job.cancel()
 
     }
 
