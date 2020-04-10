@@ -1,2 +1,2 @@
-include ':app', ':RxhttpLx',  ':wanandroidsx'
+include ':app', ':RxhttpLx',  ':wanandroidsx', ':ktglobalscopelx'
 rootProject.name='WanAndroidPractice'
