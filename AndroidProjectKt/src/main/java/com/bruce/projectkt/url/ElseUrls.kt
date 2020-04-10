@@ -9,8 +9,14 @@ package com.bruce.projectkt.url
  * @time:  18:04
  */
 object ElseUrls {
-
-    const val Article = "/article/list/0/json"
+    //占位符
+    //%d：表示整数型；
+    //%f ：表示浮点型，其中f前面的可以加.1、2、3、4、5等，表示小数的位数
+    //%s：表示字符串
+    //https://blog.csdn.net/u012552275/article/details/53509265
+    //https://blog.csdn.net/qq_37982823/article/details/84871069
+    //参考：https://juejin.im/post/5ded221a518825125d14a1d4
+    const val Article = "/article/list/%1d/json"
 
     const val Banner = "/banner/json"
 

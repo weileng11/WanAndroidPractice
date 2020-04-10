@@ -73,4 +73,10 @@ class ArticleEntity{
     var visible = 0
     var zan = 0
     var tags: List<*>? = null
+
+    override fun toString(): String {
+        return "ArticleEntity(apkLink=$apkLink, audit=$audit, author=$author, canEdit=$canEdit, chapterId=$chapterId, chapterName=$chapterName, collect=$collect, courseId=$courseId, desc=$desc, descMd=$descMd, envelopePic=$envelopePic, fresh=$fresh, id=$id, link=$link, niceDate=$niceDate, niceShareDate=$niceShareDate, origin=$origin, prefix=$prefix, projectLink=$projectLink, publishTime=$publishTime, selfVisible=$selfVisible, shareDate=$shareDate, shareUser=$shareUser, superChapterId=$superChapterId, superChapterName=$superChapterName, title=$title, type=$type, userId=$userId, visible=$visible, zan=$zan, tags=$tags)"
+    }
+
+
 }

@@ -30,4 +30,10 @@ class UserEntity {
     var username: String? = null
     var chapterTops: List<*>? = null
     var collectIds: List<Int>? = null
+
+    override fun toString(): String {
+        return "UserEntity(admin=$admin, email=$email, icon=$icon, id=$id, nickname=$nickname, password=$password, publicName=$publicName, token=$token, type=$type, username=$username, chapterTops=$chapterTops, collectIds=$collectIds)"
+    }
+
+
 }
