@@ -5,7 +5,7 @@ import com.bruce.sx.constants.Constants
 import com.bruce.sx.entity.TabEntity
 import com.bruce.sx.http.HttpCallBack
 import com.bruce.sx.http.HttpManager
-import com.bruce.sx.http.RetrofitServiceManager
+import com.bruce.sx.http.RetrofitServiceManager3
 import io.reactivex.disposables.Disposable
 
 /**
@@ -24,7 +24,7 @@ class TabPresenter(view: TabContract.View) : BasePresenter<TabContract.View>(vie
             //项目
             Constants.PROJECT_TYPE->{
                 HttpManager.doHttpRequest(
-                    RetrofitServiceManager.api().getProjectTabList(),
+                    RetrofitServiceManager3.api().getProjectTabList(),
                     object : HttpCallBack<MutableList<TabEntity>> {
                         override fun success(rspBean: MutableList<TabEntity>?) {
                             rspBean?.let { view?.showList(it) }
@@ -44,7 +44,7 @@ class TabPresenter(view: TabContract.View) : BasePresenter<TabContract.View>(vie
             //公众号
             Constants.ACCOUNT_TYPE->{
                 HttpManager.doHttpRequest(
-                    RetrofitServiceManager.api().getAccountTabList(),
+                    RetrofitServiceManager3.api().getAccountTabList(),
                     object : HttpCallBack<MutableList<TabEntity>> {
                         override fun success(rspBean: MutableList<TabEntity>?) {
                             rspBean?.let { view?.showList(it) }

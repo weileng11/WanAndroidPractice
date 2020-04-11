@@ -10,6 +10,7 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
 
 //https://juejin.im/post/5e78b1145188255df40fab07
+//kt协程
 class MainActivity : BaseCoroutineScopeActivity() {
 
     lateinit var job: Job

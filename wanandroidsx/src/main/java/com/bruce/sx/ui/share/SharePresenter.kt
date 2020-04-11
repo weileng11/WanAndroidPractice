@@ -4,7 +4,7 @@ import com.bruce.sx.base.BasePresenter
 import com.bruce.sx.event.ShareEvent
 import com.bruce.sx.http.HttpCallBack
 import com.bruce.sx.http.HttpManager
-import com.bruce.sx.http.RetrofitServiceManager
+import com.bruce.sx.http.RetrofitServiceManager3
 import io.reactivex.disposables.Disposable
 import org.greenrobot.eventbus.EventBus
 
@@ -17,7 +17,7 @@ class SharePresenter(view:ShareContract.View): BasePresenter<ShareContract.View>
     override fun share(title: String, link: String) {
 
         HttpManager.doHttpRequest(
-            RetrofitServiceManager.api().shareArticle(title,link),
+            RetrofitServiceManager3.api().shareArticle(title,link),
             object : HttpCallBack<Any> {
                 override fun success(rspBean: Any?) {
                     EventBus.getDefault().post(ShareEvent())

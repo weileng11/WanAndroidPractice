@@ -1,11 +1,10 @@
 package com.bruce.sx.ui.main.system.list
 
 import com.bruce.sx.base.BasePresenter
-import com.bruce.sx.entity.NavigationEntity
 import com.bruce.sx.entity.SystemListEntity
 import com.bruce.sx.http.HttpCallBack
 import com.bruce.sx.http.HttpManager
-import com.bruce.sx.http.RetrofitServiceManager
+import com.bruce.sx.http.RetrofitServiceManager3
 import io.reactivex.disposables.Disposable
 
 /**
@@ -21,7 +20,7 @@ class SystemListPresenter(view:SystemListContract.View):BasePresenter<SystemList
 
     override fun loadData() {
         HttpManager.doHttpRequest(
-            RetrofitServiceManager.api().getSystemList(),
+            RetrofitServiceManager3.api().getSystemList(),
             object : HttpCallBack<MutableList<SystemListEntity>> {
                 override fun success(rspBean: MutableList<SystemListEntity>?) {
                     rspBean?.let { view?.showList(it) }

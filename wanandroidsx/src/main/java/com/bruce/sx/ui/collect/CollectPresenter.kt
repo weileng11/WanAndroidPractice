@@ -4,7 +4,7 @@ import com.bruce.sx.base.BasePresenter
 import com.bruce.sx.entity.CollectEntity
 import com.bruce.sx.http.HttpCallBack
 import com.bruce.sx.http.HttpManager
-import com.bruce.sx.http.RetrofitServiceManager
+import com.bruce.sx.http.RetrofitServiceManager3
 import io.reactivex.disposables.Disposable
 
 /**
@@ -22,7 +22,7 @@ class CollectPresenter(view:CollectContract.View): BasePresenter<CollectContract
     override fun loadData(page: Int) {
 
         HttpManager.doHttpRequest(
-            RetrofitServiceManager.api().getCollectData(page),
+            RetrofitServiceManager3.api().getCollectData(page),
             object : HttpCallBack<CollectEntity> {
                 override fun success(rspBean: CollectEntity?) {
                     rspBean?.datas?.let { view?.showList(it) }
@@ -43,7 +43,7 @@ class CollectPresenter(view:CollectContract.View): BasePresenter<CollectContract
     override fun cancelCollect(id: Int) {
 
         HttpManager.doHttpRequest(
-            RetrofitServiceManager.api().unCollect(id),
+            RetrofitServiceManager3.api().unCollect(id),
             object : HttpCallBack<Any> {
                 override fun success(rspBean: Any?) {
                     view?.cancelCollectSuccess()

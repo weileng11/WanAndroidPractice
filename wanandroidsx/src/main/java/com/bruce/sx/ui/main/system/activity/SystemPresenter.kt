@@ -4,7 +4,7 @@ import com.bruce.sx.base.BasePresenter
 import com.bruce.sx.entity.ArticleEntity
 import com.bruce.sx.http.HttpCallBack
 import com.bruce.sx.http.HttpManager
-import com.bruce.sx.http.RetrofitServiceManager
+import com.bruce.sx.http.RetrofitServiceManager3
 import io.reactivex.disposables.Disposable
 
 class SystemPresenter(view:SystemContract.View) : BasePresenter<SystemContract.View>(view) ,
@@ -15,7 +15,7 @@ class SystemPresenter(view:SystemContract.View) : BasePresenter<SystemContract.V
      */
     override fun loadData(pageNum: Int,cid:Int) {
         HttpManager.doHttpRequest(
-            RetrofitServiceManager.api().getSystemArticle(pageNum,cid),
+            RetrofitServiceManager3.api().getSystemArticle(pageNum,cid),
             object : HttpCallBack<ArticleEntity> {
                 override fun success(rspBean: ArticleEntity?) {
                     rspBean?.datas?.let { view?.showList(it) }
@@ -40,7 +40,7 @@ class SystemPresenter(view:SystemContract.View) : BasePresenter<SystemContract.V
      */
     override fun unCollect(id: Int) {
         HttpManager.doHttpRequest(
-            RetrofitServiceManager.api().unCollect(id),
+            RetrofitServiceManager3.api().unCollect(id),
             object : HttpCallBack<Any> {
                 override fun success(rspBean: Any?) {
                     view?.unCollectSuccess()
@@ -63,7 +63,7 @@ class SystemPresenter(view:SystemContract.View) : BasePresenter<SystemContract.V
      */
     override fun collect(id: Int) {
         HttpManager.doHttpRequest(
-            RetrofitServiceManager.api().collect(id),
+            RetrofitServiceManager3.api().collect(id),
             object : HttpCallBack<Any> {
                 override fun success(rspBean: Any?) {
                     view?.collectSuccess()

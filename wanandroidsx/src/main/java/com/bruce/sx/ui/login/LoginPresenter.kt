@@ -6,7 +6,7 @@ import com.bruce.sx.entity.UserEntity
 import com.bruce.sx.event.LoginEvent
 import com.bruce.sx.http.HttpCallBack
 import com.bruce.sx.http.HttpManager
-import com.bruce.sx.http.RetrofitServiceManager
+import com.bruce.sx.http.RetrofitServiceManager3
 import com.bruce.sx.utils.PrefUtils
 import io.reactivex.disposables.Disposable
 import org.greenrobot.eventbus.EventBus
@@ -25,7 +25,7 @@ class LoginPresenter (view: LoginContract.View): BasePresenter<LoginContract.Vie
     override fun login(username: String, password: String) {
 
         HttpManager.doHttpRequest(
-            RetrofitServiceManager.api().login(username,password),
+            RetrofitServiceManager3.api().login(username,password),
             object : HttpCallBack<UserEntity> {
                 override fun success(rspBean: UserEntity?) {
                     //登陆成功保存用户信息，并发送消息

@@ -3,7 +3,7 @@ package com.bruce.sx.ui.register
 import com.bruce.sx.base.BasePresenter
 import com.bruce.sx.http.HttpCallBack
 import com.bruce.sx.http.HttpManager
-import com.bruce.sx.http.RetrofitServiceManager
+import com.bruce.sx.http.RetrofitServiceManager3
 import io.reactivex.disposables.Disposable
 
 /**
@@ -19,7 +19,7 @@ class RegisterPresenter(view:RegisterContract.View):BasePresenter<RegisterContra
 
     override fun register(username: String, password: String, repassword: String) {
         HttpManager.doHttpRequest(
-            RetrofitServiceManager.api().register(username,password,repassword),
+            RetrofitServiceManager3.api().register(username,password,repassword),
             object : HttpCallBack<Any> {
                 override fun success(rspBean: Any?) {
                     view?.registerSuccess()

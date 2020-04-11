@@ -4,7 +4,7 @@ import com.bruce.sx.base.BasePresenter
 import com.bruce.sx.entity.RankEntity
 import com.bruce.sx.http.HttpCallBack
 import com.bruce.sx.http.HttpManager
-import com.bruce.sx.http.RetrofitServiceManager
+import com.bruce.sx.http.RetrofitServiceManager3
 import io.reactivex.disposables.Disposable
 
 /**
@@ -20,7 +20,7 @@ class RankPresenter(view:RankContract.View): BasePresenter<RankContract.View>(vi
 
     override fun loadData(pageNum: Int) {
         HttpManager.doHttpRequest(
-            RetrofitServiceManager.api().getRank(pageNum),
+            RetrofitServiceManager3.api().getRank(pageNum),
             object : HttpCallBack<RankEntity> {
                 override fun success(rspBean: RankEntity?) {
                     rspBean?.let { view?.showList(it) }

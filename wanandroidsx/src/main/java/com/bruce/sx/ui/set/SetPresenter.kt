@@ -3,7 +3,7 @@ package com.bruce.sx.ui.set
 import com.bruce.sx.base.BasePresenter
 import com.bruce.sx.http.HttpCallBack
 import com.bruce.sx.http.HttpManager
-import com.bruce.sx.http.RetrofitServiceManager
+import com.bruce.sx.http.RetrofitServiceManager3
 import io.reactivex.disposables.Disposable
 
 class SetPresenter(view:SetContract.View) : BasePresenter<SetContract.View>(view)
@@ -11,7 +11,7 @@ class SetPresenter(view:SetContract.View) : BasePresenter<SetContract.View>(view
 
     override fun logout() {
         HttpManager.doHttpRequest(
-            RetrofitServiceManager.api().logout(),
+            RetrofitServiceManager3.api().logout(),
             object : HttpCallBack<Any> {
                 override fun success(rspBean: Any?) {
                     view?.logoutSuccess()

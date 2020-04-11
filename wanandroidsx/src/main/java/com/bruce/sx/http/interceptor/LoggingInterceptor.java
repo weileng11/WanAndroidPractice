@@ -1,0 +1,227 @@
+package com.bruce.sx.http.interceptor;
+
+/**
+ * @author:
+ * @project: WanAndroidPractice
+ * @package: com.bruce.sx.http.interceptor
+ * @description:
+ * @date: 2020/4/11
+ * @time: 16:22
+ */
+
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.Iterator;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.Connection;
+import okhttp3.Headers;
+import okhttp3.HttpUrl;
+import okhttp3.Interceptor;
+import okhttp3.MediaType;
+import okhttp3.Protocol;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
+import okhttp3.internal.http.HttpHeaders;
+import okio.Buffer;
+import okio.BufferedSource;
+
+/**
+ * Retrofit2 Logger拦截器。
+ */
+public final class LoggingInterceptor implements Interceptor {
+    private static final Charset UTF8 = Charset.forName("UTF-8");
+
+    public enum Level {
+        NONE,
+        HEADERS,
+        BODY
+    }
+
+    public interface Logger {
+        void log(String message);
+
+        Logger DEFAULT = new Logger() {
+            @Override
+            public void log(String message) {
+                //Platform.get().log(4, message, null);
+            }
+        };
+    }
+
+    public LoggingInterceptor() {
+        this(Logger.DEFAULT);
+    }
+
+    public LoggingInterceptor(Logger logger) {
+        this.logger = logger;
+    }
+
+    private final Logger logger;
+
+    private volatile Level level = Level.NONE;
+
+    /**
+     * Change the level at which this interceptor logs.
+     */
+    public LoggingInterceptor setLevel(Level level) {
+        if (level == null) throw new NullPointerException("level == null. Use Level.NONE instead.");
+        this.level = level;
+        return this;
+    }
+
+    public Level getLevel() {
+        return level;
+    }
+
+    @Override
+    public Response intercept(Chain chain) throws IOException {
+        Level level = this.level;
+
+        Request request = chain.request();
+        if (level == Level.NONE) {
+            return chain.proceed(request);
+        }
+
+        boolean logBody = level == Level.BODY;
+        boolean logHeaders = logBody || level == Level.HEADERS;
+
+        RequestBody requestBody = request.body();
+        boolean hasRequestBody = requestBody != null;
+
+        Connection connection = chain.connection();
+        Protocol protocol = connection != null ? connection.protocol() : Protocol.HTTP_1_1;
+        String requestStartMessage =
+                "--> " + request.method() + ' ' + request.url() + ' ' + protocol(protocol);
+        if (!logHeaders && hasRequestBody) {
+            requestStartMessage += " (" + requestBody.contentLength() + "-byte body)";
+        }
+        logger.log("--请求数据"+requestStartMessage);
+
+        logger.log("---请求头---");
+        if (logHeaders) {
+            if (hasRequestBody) {
+                // Request body headers are only present when installed as a network interceptor. Force
+                // them to be included (when available) so there values are known.
+                if (requestBody.contentType() != null) {
+                    logger.log("Content-Type: " + requestBody.contentType());
+                }
+                if (requestBody.contentLength() != -1) {
+                    logger.log("Content-Length: " + requestBody.contentLength());
+                }
+            }
+
+            Headers headers = request.headers();
+            for (int i = 0, count = headers.size(); i < count; i++) {
+                String name = headers.name(i);
+                // Skip headers from the request body as they are explicitly logged above.
+                if (!"Content-Type".equalsIgnoreCase(name) && !"Content-Length".equalsIgnoreCase(name)) {
+                    logger.log(name + ": " + headers.value(i));
+                }
+                logger.log(name + ": " + headers.value(i));
+            }
+
+            logger.log("---请求参数---");
+            HttpUrl url = request.url();
+            Iterator var28 = url.queryParameterNames().iterator();
+
+            while(var28.hasNext()) {
+                String name = (String)var28.next();
+                StringBuffer sb = new StringBuffer();
+                sb.append(url.queryParameterValues(name));
+                sb.deleteCharAt(sb.length() - 1);
+                sb.deleteCharAt(0);
+                logger.log((new StringBuilder()).append(name).append(": ").append(sb).toString());
+            }
+
+            logger.log("---请求体---");
+            if (!logBody || !hasRequestBody) {
+                logger.log("--> END " + request.method());
+            } else if (bodyEncoded(request.headers())) {
+                logger.log("--> END " + request.method() + " (encoded body omitted)");
+            } else {
+                Buffer buffer = new Buffer();
+                requestBody.writeTo(buffer);
+
+                Charset charset = UTF8;
+                MediaType contentType = requestBody.contentType();
+                if (contentType != null) {
+                    charset = contentType.charset(UTF8);
+                }
+
+                logger.log("");
+                logger.log(buffer.readString(charset));
+
+                logger.log(
+                        "--> END " + request.method() + " (" + requestBody.contentLength() + "-byte body)");
+            }
+        }
+        //请求结束
+
+        long startNs = System.nanoTime();
+        Response response = chain.proceed(request);
+        long tookMs = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs);
+
+        ResponseBody responseBody = response.body();
+        long contentLength = responseBody.contentLength();
+        //响应码及url等
+        String bodySize = contentLength != -1 ? contentLength + "-byte" : "unknown-length";
+        logger.log("<-- "
+                + response.code()
+                + ' '
+                + response.message()
+                + ' '
+                + response.request().url()
+                + " ("
+                + tookMs
+                + "ms"
+                + (!logHeaders ? ", " + bodySize + " body" : "")
+                + ')');
+
+        logger.log("---响应头---");
+        if (logHeaders) {
+            Headers headers = response.headers();
+            for (int i = 0, count = headers.size(); i < count; i++) {
+                logger.log(headers.name(i) + ": " + headers.value(i));
+            }
+
+            logger.log("---响应体---");
+            if (!logBody || !HttpHeaders.hasBody(response)) {
+                logger.log("<-- END HTTP");
+            } else if (bodyEncoded(response.headers())) {
+                logger.log("<-- END HTTP (encoded body omitted)");
+            } else {
+                BufferedSource source = responseBody.source();
+                source.request(Long.MAX_VALUE); // Buffer the entire body.
+                Buffer buffer = source.buffer();
+
+                Charset charset = UTF8;
+                MediaType contentType = responseBody.contentType();
+                if (contentType != null) {
+                    charset = contentType.charset(UTF8);
+                }
+
+                if (contentLength != 0) {
+                    logger.log("");
+                    logger.log(buffer.clone().readString(charset));
+                }
+
+                logger.log("<-- END HTTP (" + buffer.size() + "-byte body)");
+            }
+        }
+        logger.log("<-- END Response");
+        return response;
+    }
+
+    private boolean bodyEncoded(Headers headers) {
+        String contentEncoding = headers.get("Content-Encoding");
+        return contentEncoding != null && !contentEncoding.equalsIgnoreCase("identity");
+    }
+
+    private static String protocol(Protocol protocol) {
+        return protocol == Protocol.HTTP_1_0 ? "HTTP/1.0" : "HTTP/1.1";
+    }
+
+}

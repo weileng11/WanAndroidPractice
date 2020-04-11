@@ -2,13 +2,10 @@ package com.bruce.sx.ui.my
 
 import com.bruce.sx.base.BasePresenter
 import com.bruce.sx.entity.MyArticleEntity
-import com.bruce.sx.entity.RankEntity
 import com.bruce.sx.http.HttpCallBack
 import com.bruce.sx.http.HttpManager
-import com.bruce.sx.http.RetrofitServiceManager
-import io.reactivex.android.schedulers.AndroidSchedulers
+import com.bruce.sx.http.RetrofitServiceManager3
 import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 
 /**
  * @author: bruce
@@ -23,7 +20,7 @@ class  MyArticlePresenter(view:MyArticleContract.View): BasePresenter<MyArticleC
 
     override fun loadData(pageNum: Int) {
         HttpManager.doHttpRequest(
-            RetrofitServiceManager.api().getMyArticle(pageNum),
+            RetrofitServiceManager3.api().getMyArticle(pageNum),
             object : HttpCallBack<MyArticleEntity> {
                 override fun success(rspBean: MyArticleEntity?) {
                     rspBean?.let { view?.showList(it) }
@@ -43,7 +40,7 @@ class  MyArticlePresenter(view:MyArticleContract.View): BasePresenter<MyArticleC
 
     override fun delete(id: Int) {
         HttpManager.doHttpRequest(
-            RetrofitServiceManager.api().deleteMyArticle(id),
+            RetrofitServiceManager3.api().deleteMyArticle(id),
             object : HttpCallBack<Any> {
                 override fun success(rspBean: Any?) {
                     view?.deleteSuccess()

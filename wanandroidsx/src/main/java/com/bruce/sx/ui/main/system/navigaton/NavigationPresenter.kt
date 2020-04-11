@@ -4,7 +4,7 @@ import com.bruce.sx.base.BasePresenter
 import com.bruce.sx.entity.NavigationEntity
 import com.bruce.sx.http.HttpCallBack
 import com.bruce.sx.http.HttpManager
-import com.bruce.sx.http.RetrofitServiceManager
+import com.bruce.sx.http.RetrofitServiceManager3
 import io.reactivex.disposables.Disposable
 
 /**
@@ -20,7 +20,7 @@ class NavigationPresenter(view:NavigationContract.View):  BasePresenter<Navigati
 
     override fun loadData() {
         HttpManager.doHttpRequest(
-            RetrofitServiceManager.api().getNavigation(),
+            RetrofitServiceManager3.api().getNavigation(),
             object : HttpCallBack<MutableList<NavigationEntity>> {
                 override fun success(rspBean: MutableList<NavigationEntity>?) {
                     rspBean?.let { view?.showList(it) }

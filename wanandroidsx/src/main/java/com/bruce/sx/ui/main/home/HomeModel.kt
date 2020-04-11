@@ -3,7 +3,7 @@ package com.bruce.sx.ui.main.home
 import com.bruce.sx.entity.ArticleEntity
 import com.bruce.sx.entity.BannerEntity
 import com.bruce.sx.http.BaseResponse
-import com.bruce.sx.http.RetrofitServiceManager
+import com.bruce.sx.http.RetrofitServiceManager3
 import io.reactivex.Observable
 
 /**
@@ -16,18 +16,18 @@ import io.reactivex.Observable
  */
 class HomeModel :HomeContract.Model{
     override fun loadData(pageNum: Int): Observable<BaseResponse<ArticleEntity>> {
-        return RetrofitServiceManager.api().getHomeList(pageNum)
+        return RetrofitServiceManager3.api().getHomeList(pageNum)
     }
 
     override fun loadBanner(): Observable<BaseResponse<MutableList<BannerEntity>>> {
-        return RetrofitServiceManager.api().getBanner()
+        return RetrofitServiceManager3.api().getBanner()
     }
 
     override fun collect(id: Int): Observable<BaseResponse<Any>> {
-        return RetrofitServiceManager.api().collect(id)
+        return RetrofitServiceManager3.api().collect(id)
     }
 
     override fun unCollect(id: Int): Observable<BaseResponse<Any>> {
-        return RetrofitServiceManager.api().unCollect(id)
+        return RetrofitServiceManager3.api().unCollect(id)
     }
 }

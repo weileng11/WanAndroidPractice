@@ -6,7 +6,7 @@ import com.bruce.sx.entity.BannerEntity
 import com.bruce.sx.http.BaseResponse
 import com.bruce.sx.http.HttpCallBack
 import com.bruce.sx.http.HttpManager
-import com.bruce.sx.http.RetrofitServiceManager
+import com.bruce.sx.http.RetrofitServiceManager3
 import io.reactivex.disposables.Disposable
 
 /**
@@ -54,7 +54,7 @@ class HomePresenter(view: HomeContract.View) : BasePresenter<HomeContract.View>(
      * 包括置顶文章
      */
     private fun loadTopList(list: MutableList<ArticleEntity.DatasBean>) {
-        HttpManager.doHttpRequest(RetrofitServiceManager.api().getTopList(),
+        HttpManager.doHttpRequest(RetrofitServiceManager3.api().getTopList(),
             object : HttpCallBack<MutableList<ArticleEntity.DatasBean>> {
                 //获取置顶文章成功加入到文章列表头部
                 override fun success(rspBean: MutableList<ArticleEntity.DatasBean>?) {

@@ -1,17 +1,24 @@
 package com.bruce.sx.http;
 
+import android.util.Log;
+
+import com.bruce.sx.BuildConfig;
 import com.bruce.sx.base.WanAndroidApplication;
 import com.bruce.sx.constants.ApiConstants;
+import com.bruce.sx.http.interceptor.HeaderInterceptor;
+import com.bruce.sx.http.interceptor.LoggingInterceptor;
 import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
+import com.orhanobut.logger.Logger;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -24,7 +31,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @date: 2020/3/27
  * @time: 9:37
  */
-public class RetrofitServiceManager {
+public class RetrofitServiceManager3 {
     /**
      * 连接超时时间
      */
@@ -43,13 +50,13 @@ public class RetrofitServiceManager {
      */
     private final OkHttpClient okHttpClient;
     private final Retrofit retrofit;
-    private static final RetrofitServiceManager INSTANCE;
+    private static final RetrofitServiceManager3 INSTANCE;
 
     static {
-        INSTANCE = new RetrofitServiceManager();
+        INSTANCE = new RetrofitServiceManager3();
     }
 
-    private RetrofitServiceManager() {
+    private RetrofitServiceManager3() {
         //打印log
 //        HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor();
 //        if(BuildConfig.DEBUG){
@@ -58,6 +65,11 @@ public class RetrofitServiceManager {
 //        }else {
 //            logInterceptor.setLevel(HttpLoggingInterceptor.Level.NONE);
 //        }
+
+
+        LoggingInterceptor logInterceptor = new LoggingInterceptor(new Logger());
+        logInterceptor.setLevel(LoggingInterceptor.Level.BODY);
+
 
         //文件缓存位置
         File cacheFile = new File(WanAndroidApplication.Companion.getContext().getCacheDir(), "cache");
@@ -74,8 +86,9 @@ public class RetrofitServiceManager {
 //                .addInterceptor(myInterceptor) 拦截器
 //                .sslSocketFactory(SSLSocketClient.getSSLSocketFactory()) //身份验证
 //                .hostnameVerifier(SSLSocketClient.getHostnameVerifier())
-//                .addInterceptor(logInterceptor)
-                   .addInterceptor(new LoggingInterceptor())
+                .addInterceptor(new HeaderInterceptor())
+                .addInterceptor(logInterceptor)
+//                   .addInterceptor(new LoggingInterceptor())
 //                .addInterceptor(new Interceptor() {
 //
 //                    @Override
@@ -113,16 +126,24 @@ public class RetrofitServiceManager {
     /**
      *  获取RetrofitServiceManager
      */
-    public static RetrofitServiceManager getInstance() {
+    public static RetrofitServiceManager3 getInstance() {
         return INSTANCE;
     }
 
     public static ApiService api() {
-        return RetrofitServiceManager.getInstance().create(ApiService.class);
+        return RetrofitServiceManager3.getInstance().create(ApiService.class);
     }
 
     public <T> T create(Class<T> service) {
         return retrofit.create(service);
     }
 
+
+    public class Logger implements LoggingInterceptor.Logger {
+        @Override
+        public void log(String message) {
+            Log.i("____", message);
+        }
+
+   }
 }

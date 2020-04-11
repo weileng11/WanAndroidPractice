@@ -4,7 +4,7 @@ import com.bruce.sx.base.BasePresenter
 import com.bruce.sx.entity.IntegralRecordEntity
 import com.bruce.sx.http.HttpCallBack
 import com.bruce.sx.http.HttpManager
-import com.bruce.sx.http.RetrofitServiceManager
+import com.bruce.sx.http.RetrofitServiceManager3
 import io.reactivex.disposables.Disposable
 
 /**
@@ -21,7 +21,7 @@ class IntegralPresenter(view:IntegralContract.View):BasePresenter<IntegralContra
     override fun loadData(pageNum:Int) {
 
         HttpManager.doHttpRequest(
-            RetrofitServiceManager.api().getIntegralRecord(pageNum),
+            RetrofitServiceManager3.api().getIntegralRecord(pageNum),
             object : HttpCallBack<IntegralRecordEntity> {
                 override fun success(rspBean: IntegralRecordEntity?) {
                     rspBean?.let { view?.showList(it) }

@@ -5,7 +5,7 @@ import com.bruce.sx.constants.Constants
 import com.bruce.sx.entity.ArticleEntity
 import com.bruce.sx.http.HttpCallBack
 import com.bruce.sx.http.HttpManager
-import com.bruce.sx.http.RetrofitServiceManager
+import com.bruce.sx.http.RetrofitServiceManager3
 import io.reactivex.disposables.Disposable
 
 /**
@@ -23,7 +23,7 @@ class TabListPresenter(view: TabListContract.View): BasePresenter<TabListContrac
         when(type){
             Constants.PROJECT_TYPE->{
                 HttpManager.doHttpRequest(
-                    RetrofitServiceManager.api().getProjectList(pageNum,id),
+                    RetrofitServiceManager3.api().getProjectList(pageNum,id),
                     object : HttpCallBack<ArticleEntity> {
                         override fun success(rspBean: ArticleEntity?) {
                             rspBean?.datas?.let { view?.showList(it) }
@@ -42,7 +42,7 @@ class TabListPresenter(view: TabListContract.View): BasePresenter<TabListContrac
             }
             Constants.ACCOUNT_TYPE->{
                 HttpManager.doHttpRequest(
-                    RetrofitServiceManager.api().getAccountList(id,pageNum),
+                    RetrofitServiceManager3.api().getAccountList(id,pageNum),
                     object : HttpCallBack<ArticleEntity> {
                         override fun success(rspBean: ArticleEntity?) {
                             rspBean?.datas?.let { view?.showList(it) }
@@ -69,7 +69,7 @@ class TabListPresenter(view: TabListContract.View): BasePresenter<TabListContrac
      */
     override fun unCollect(id: Int) {
         HttpManager.doHttpRequest(
-        RetrofitServiceManager.api().unCollect(id),
+        RetrofitServiceManager3.api().unCollect(id),
         object : HttpCallBack<Any> {
             override fun success(rspBean: Any?) {
                 view?.unCollectSuccess()
@@ -92,7 +92,7 @@ class TabListPresenter(view: TabListContract.View): BasePresenter<TabListContrac
      */
     override fun collect(id: Int) {
         HttpManager.doHttpRequest(
-            RetrofitServiceManager.api().collect(id),
+            RetrofitServiceManager3.api().collect(id),
             object : HttpCallBack<Any> {
                 override fun success(rspBean: Any?) {
                     view?.collectSuccess()

@@ -5,7 +5,7 @@ import com.bruce.sx.constants.Constants
 import com.bruce.sx.entity.IntegralEntity
 import com.bruce.sx.http.HttpCallBack
 import com.bruce.sx.http.HttpManager
-import com.bruce.sx.http.RetrofitServiceManager
+import com.bruce.sx.http.RetrofitServiceManager3
 import com.bruce.sx.utils.PrefUtils
 import io.reactivex.disposables.Disposable
 
@@ -23,7 +23,7 @@ class MinePresenter(view:MineContract.View):BasePresenter<MineContract.View>(vie
     override fun loadIntegral() {
 
         HttpManager.doHttpRequest(
-            RetrofitServiceManager.api().getIntegral(),
+            RetrofitServiceManager3.api().getIntegral(),
             object : HttpCallBack<IntegralEntity> {
                 override fun success(rspBean: IntegralEntity?) {
                     PrefUtils.setObject(Constants.INTEGRAL_INFO,rspBean)
