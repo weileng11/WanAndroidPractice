@@ -4,10 +4,16 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
+import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
+import com.orhanobut.logger.AndroidLogAdapter
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
 
 //https://juejin.im/post/5e78b1145188255df40fab07
 //kt协程
@@ -22,9 +28,11 @@ class MainActivity : BaseCoroutineScopeActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        Logger.addLogAdapter(AndroidLogAdapter())
 
         global_scope_launch.setOnClickListener {
 //            globalScopeLaunch()
+            Logger.d("sasasas")
             mainScopeLaunch()
         }
         global_async_launch.setOnClickListener {

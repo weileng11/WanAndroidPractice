@@ -5,6 +5,8 @@ import android.content.Context
 
 import com.bruce.sx.R
 import com.bruce.sx.utils.ColorUtils
+import com.orhanobut.logger.AndroidLogAdapter
+import com.orhanobut.logger.Logger
 import com.scwang.smartrefresh.header.MaterialHeader
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator
@@ -26,6 +28,7 @@ class WanAndroidApplication : Application() {
         super.onCreate()
         baseApplication = this
         context = applicationContext
+        Logger.addLogAdapter(AndroidLogAdapter())
     }
 
     init {
