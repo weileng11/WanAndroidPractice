@@ -43,4 +43,5 @@ dependencies {
     api "androidx.lifecycle:lifecycle-extensions:2.1.0"
 
     implementation 'com.orhanobut:logger:2.2.0'
+    implementation 'com.elvishew:xlog:1.6.1'
 }
