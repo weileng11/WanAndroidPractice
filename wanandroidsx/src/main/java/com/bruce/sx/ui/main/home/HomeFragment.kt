@@ -22,10 +22,16 @@ import com.bruce.sx.proxy.ImageLoad
 import com.bruce.sx.ui.search.SearchActivity
 import com.bruce.sx.ui.web.WebActivity
 import com.bruce.sx.utils.AppManager
+import com.bruce.sx.utils.SettingUtil
 import com.bruce.sx.utils.ToastUtils
 import com.bruce.sx.weight.ReloadListener
+import com.bruce.sx.weight.loadCallBack.EmptyCallback
+import com.bruce.sx.weight.loadCallBack.ErrorCallback
+import com.bruce.sx.weight.loadCallBack.LoadingCallback
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
+import com.kingja.loadsir.core.LoadService
+import com.kingja.loadsir.core.LoadSir
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener
@@ -54,6 +60,7 @@ class HomeFragment : LazyFragment<HomeContract.Presenter<HomeContract.View>>(),
     private var bannerList = mutableListOf<BannerEntity>()
     private var articleAdapter: ArticleAdapter? = null
     private var currentPosition = 0
+    private lateinit var loadsir: LoadService<Any>
 
     /**
      * 点击收藏后将点击事件上锁,等接口有相应结果再解锁
@@ -68,7 +75,17 @@ class HomeFragment : LazyFragment<HomeContract.Presenter<HomeContract.View>>(),
 
     override fun lazyInit() {
         initView()
-        loadingTip.loading()
+//        loadingTip.loading()
+        //绑定loadsir
+        loadsir = LoadSir.getDefault().register(smartRefresh){
+            //界面加载失败，或者没有数据时，点击重试的监听
+            loadsir.showCallback(LoadingCallback::class.java)
+            loadData()
+        }.apply {
+            //获取主题颜色并设置
+            activity?.let { SettingUtil.setLoadingColor(it, this) }
+        }
+        loadsir.showCallback(LoadingCallback::class.java)
         loadData()
     }
 
@@ -101,8 +118,8 @@ class HomeFragment : LazyFragment<HomeContract.Presenter<HomeContract.View>>(),
         rvHomeList.adapter = articleAdapter
         rvHomeList.layoutManager = LinearLayoutManager(context)
 
-        //加载监听
-        loadingTip.setReloadListener(this)
+//        //加载监听
+//        loadingTip.setReloadListener(this)
         //刷新
         smartRefresh?.setOnRefreshListener(this)
         smartRefresh?.setOnLoadMoreListener(this)
@@ -190,12 +207,14 @@ class HomeFragment : LazyFragment<HomeContract.Presenter<HomeContract.View>>(),
      */
     override fun showList(list: MutableList<ArticleEntity.DatasBean>) {
         dismissRefresh()
-        loadingTip.dismiss()
+//        loadingTip.dismiss()
         if (list.isNotEmpty()) {
+            loadsir.showSuccess()
             articleList.addAll(list)
             articleAdapter?.setNewData(articleList)
         } else {
-            if (articleList.size == 0) loadingTip.showEmpty()
+            if (articleList.size == 0) loadsir.showCallback(EmptyCallback::class.java)
+//                loadingTip.showEmpty()
             else ToastUtils.show("没有数据啦...")
         }
     }
@@ -258,7 +277,8 @@ class HomeFragment : LazyFragment<HomeContract.Presenter<HomeContract.View>>(),
         lockCollectClick = true
         //请求失败将page -1
         if (pageNum>0)pageNum--
-        loadingTip.dismiss()
+//        loadingTip.dismiss()
+        loadsir.showCallback(ErrorCallback::class.java)
         dismissRefresh()
         ToastUtils.show(error)
     }
@@ -282,7 +302,8 @@ class HomeFragment : LazyFragment<HomeContract.Presenter<HomeContract.View>>(),
      * 无网络，重新加载
      */
     override fun reload() {
-        loadingTip.loading()
+//        loadingTip.loading()
+        loadsir.showCallback(LoadingCallback::class.java)
         loadData()
     }
 

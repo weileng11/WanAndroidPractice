@@ -18,6 +18,11 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import com.bruce.sx.BuildConfig
+import com.bruce.sx.weight.loadCallBack.EmptyCallback
+import com.bruce.sx.weight.loadCallBack.ErrorCallback
+import com.bruce.sx.weight.loadCallBack.LoadingCallback
+import com.kingja.loadsir.callback.SuccessCallback
+import com.kingja.loadsir.core.LoadSir
 
 
 /**
@@ -39,6 +44,14 @@ class WanAndroidApplication : Application() {
                 return BuildConfig.DEBUG
             }
         })
+
+        //界面加载管理 初始化
+        LoadSir.beginBuilder()
+            .addCallback(LoadingCallback())//加载
+            .addCallback(ErrorCallback())//错误
+            .addCallback(EmptyCallback())//空
+            .setDefaultCallback(SuccessCallback::class.java)//设置默认加载状态页
+            .commit()
     }
 
     init {
