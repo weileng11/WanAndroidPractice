@@ -1,4 +1,5 @@
 https://github.com/JessYanCoding/MVPArms/blob/master/CONTRIBUTING_APP.md (比较好的DEMO)
+学习dagger2地址:https://qingmei2.blog.csdn.net/article/details/73065745
 
 
 [简书地址](https://www.jianshu.com/p/60eefed7870f)
