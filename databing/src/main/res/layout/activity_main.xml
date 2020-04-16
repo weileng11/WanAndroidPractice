@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+        <variable
+            name="presenter"
+            type="com.bruce.databing.view.activity.A01MainActivity.Presenter" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.bruce.databing.view.activity.A01MainActivity">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:onClick="@{() -> presenter.baseDataBinding()}"
+            android:text="@{`DataBinding基础使用` + presenter.message}" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:onClick="@{() -> presenter.recyclerView()}"
+            android:text="@{`DataBinding 展示列表` + presenter.message}" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:onClick="@{() -> presenter.mulTypeRecyclerView()}"
+            android:text="@{`DataBinding 展示多类型列表` + presenter.message}" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:onClick="@{() -> presenter.studyLibrary()}"
+            android:text="@{`MultiType库学习` + presenter.message}" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:onClick="@{() -> presenter.mvvm()}"
+            android:text="@{`DataBinding Mvvm` + presenter.message}" />
+
+    </LinearLayout>
+
+</layout>

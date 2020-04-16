@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    |<!-- [shape]
+    Android 颜色渐变（gradient）的实现总结
+
+    根标签，声明一个shape
+[gradient] 声明该shape的属性-渐变色,除此外还有其他属性如corners、stroke、size等等
+[android:angle]渐变色的角度，举例来说[android:angle]渐变色的角度 这一块，
+我测试下来发现angle= 0和360代表从左至右颜色渐变；
+180代表从右至左颜色渐变；90代表从下至上颜色渐变…
+————————————————
+版权声明：本文为CSDN博主「却把清梅嗅」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/mq2553299/article/details/72629321-->
+
+    <gradient
+        android:angle="90"
+        android:endColor="@color/colorPrimary"
+        android:startColor="@color/colorAccent" />
+</shape>
