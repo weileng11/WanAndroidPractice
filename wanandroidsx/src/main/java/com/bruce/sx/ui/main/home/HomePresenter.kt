@@ -1,12 +1,17 @@
 package com.bruce.sx.ui.main.home
 
+import android.widget.Toast
 import com.bruce.sx.base.BasePresenter
+import com.bruce.sx.base.WanAndroidApplication
 import com.bruce.sx.entity.ArticleEntity
 import com.bruce.sx.entity.BannerEntity
 import com.bruce.sx.http.BaseResponse
 import com.bruce.sx.http.HttpCallBack
 import com.bruce.sx.http.HttpManager
 import com.bruce.sx.http.RetrofitServiceManager3
+import com.bruce.sx.utils.StaticUtils
+import com.bruce.sx.utils.ToastUtils
+import com.bruce.sx.weight.loadCallBack.LoadingCallback
 import io.reactivex.disposables.Disposable
 
 /**
@@ -29,6 +34,10 @@ class HomePresenter(view: HomeContract.View) : BasePresenter<HomeContract.View>(
      * 加载首页文章列表
      */
     override fun loadData(pageNum: Int) {
+        if (!StaticUtils.hasNetwork(WanAndroidApplication.context!!.applicationContext)) {
+            ToastUtils.show( "网络异常,请检查网络")
+            return
+        }
         HttpManager.doHttpRequest(model?.loadData(pageNum),
             object : HttpCallBack<ArticleEntity> {
                 override fun success(t: ArticleEntity?) {

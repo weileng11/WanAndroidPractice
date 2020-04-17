@@ -2,13 +2,24 @@ package com.bruce.sx.http
 
 import com.bruce.sx.entity.*
 import io.reactivex.Observable
+import ren.yale.android.retrofitcachelibrx2.anno.Cache
+import ren.yale.android.retrofitcachelibrx2.anno.Mock
 import retrofit2.http.*
+import java.util.concurrent.TimeUnit
 
 /**
  * @author: bruce
  * @project: WanAndroidPractice
  * @package: com.bruce.sx.http
  * @description: https://www.cnblogs.com/weizhxa/p/9875707.html
+ * 缓存说明:https://github.com/yale8848/RetrofitCache
+ * @Cache(time = 20) 缓存设置为20秒
+ * @Cache(time = 20,timeUnit = TimeUnit.MINUTES) 缓存设置为20分钟
+ * @Cache() 默认时间缓存,默认是0秒
+ * @Cache(forceCacheNoNet = false) 默认在无网的时候强制走缓存，forceCacheNoNet=false时无网络时不强制缓存
+ * @Mock(value = "{\"data\":\"mockdata\"}") //模拟内存数据 添加模拟数据（value,assets,url同时都配置的话，就按照这个顺序处理）
+ * @Mock(assets = "mock/mock.json") //从assets获取模拟数据
+ * @Mock(url = "http://url.com/test") //从新的url请求数据
  * @date: 2020/3/26
  * @time:  17:56
  */
@@ -16,18 +27,21 @@ interface ApiService {
     /**
      * 获取首页文章数据
      */
+    @Cache(time = 10) //缓存设置为10秒
     @GET("/article/list/{page}/json")
     fun getHomeList(@Path("page") pageNo: Int): Observable<BaseResponse<ArticleEntity>>
 
     /**
      * 获取首页置顶文章数据
      */
+    @Cache(time = 20, timeUnit=TimeUnit.MINUTES) //缓存设置为20分钟
     @GET("/article/top/json")
     fun getTopList(): Observable<BaseResponse<MutableList<ArticleEntity.DatasBean>>>
 
     /**
      * banner
      */
+    @Cache //默认时间缓存,默认是0秒
     @GET("/banner/json")
     fun getBanner(): Observable<BaseResponse<MutableList<BannerEntity>>>
 

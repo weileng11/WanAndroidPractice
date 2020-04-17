@@ -14,4 +14,6 @@ interface IBaseView {
 
     fun getContext() :Context?
     fun onError(error :String)
+    fun showLoading()
+    fun closeLoading()
 }

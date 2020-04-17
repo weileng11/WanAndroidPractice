@@ -1,5 +1,6 @@
 package com.bruce.sx.ui.main.home
 
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -54,6 +55,11 @@ class HomeFragment : LazyFragment<HomeContract.Presenter<HomeContract.View>>(),
     BGABanner.Adapter<ImageView?, String?>, BGABanner.Delegate<ImageView?, String?>
     , HomeContract.View, OnLoadMoreListener, OnRefreshListener, ReloadListener
     , BaseQuickAdapter.OnItemClickListener, OnCollectClickListener {
+    override fun showLoading() {
+    }
+
+    override fun closeLoading() {
+    }
 
     private var pageNum: Int = 0
     private var articleList = mutableListOf<ArticleEntity.DatasBean>()
@@ -287,6 +293,7 @@ class HomeFragment : LazyFragment<HomeContract.Presenter<HomeContract.View>>(),
      * 加载更多
      */
     override fun onLoadMore(refreshLayout: RefreshLayout) {
+
         pageNum++
         presenter?.loadData(pageNum)
     }
@@ -338,6 +345,9 @@ class HomeFragment : LazyFragment<HomeContract.Presenter<HomeContract.View>>(),
         EventBus.getDefault().unregister(this)
     }
 
+    override fun getContext(): Context? {
+        return activity
+    }
     /**
      * 登陆消息，更新收藏状态
      */
