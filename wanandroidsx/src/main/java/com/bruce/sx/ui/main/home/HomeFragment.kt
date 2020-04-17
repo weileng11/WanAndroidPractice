@@ -15,7 +15,6 @@ import com.bruce.sx.adapter.ArticleAdapter
 import com.bruce.sx.adapter.OnCollectClickListener
 import com.bruce.sx.annotation.BindEventBus
 import com.bruce.sx.base.LazyFragment
-import com.bruce.sx.base.WanAndroidApplication
 import com.bruce.sx.constants.Constants
 import com.bruce.sx.entity.ArticleEntity
 import com.bruce.sx.entity.BannerEntity
@@ -26,18 +25,15 @@ import com.bruce.sx.ui.search.SearchActivity
 import com.bruce.sx.ui.web.WebActivity
 import com.bruce.sx.utils.AppManager
 import com.bruce.sx.utils.SettingUtil
-import com.bruce.sx.utils.StaticUtils
 import com.bruce.sx.utils.ToastUtils
 import com.bruce.sx.weight.ReloadListener
 import com.bruce.sx.weight.loadCallBack.EmptyCallback
 import com.bruce.sx.weight.loadCallBack.ErrorCallback
 import com.bruce.sx.weight.loadCallBack.LoadingCallback
-import com.bruce.sx.weight.loadCallBack.NetNoCallback
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.kingja.loadsir.core.LoadService
 import com.kingja.loadsir.core.LoadSir
-import com.kingja.loadsir.core.Transport
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener
@@ -117,6 +113,9 @@ class HomeFragment : LazyFragment<HomeContract.Presenter<HomeContract.View>>(),
 //        }
         loadsir.showCallback(LoadingCallback::class.java)
         loadData()
+
+        //通知其他界面立马修改配置
+//        SettingChangeEvent().post()
     }
 
     override fun createPresenter(): HomeContract.Presenter<HomeContract.View>? {

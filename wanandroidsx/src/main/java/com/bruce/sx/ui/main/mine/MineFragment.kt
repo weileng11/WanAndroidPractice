@@ -3,7 +3,7 @@ package com.bruce.sx.ui.main.mine
 import android.os.Bundle
 import android.view.View
 import com.bruce.sx.R
-import com.bruce.sx.base.IBasePresenter
+import com.bruce.sx.annotation.BindEventBus
 import com.bruce.sx.base.LazyFragment
 import com.bruce.sx.constants.Constants
 import com.bruce.sx.entity.IntegralEntity
@@ -157,6 +157,7 @@ class MineFragment : LazyFragment<MineContract.Presenter<MineContract.View>>(),V
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public fun loginEvent(loginEvent: LoginEvent){
+        ToastUtils.show("请先登录xx")
         presenter?.loadIntegral()
     }
 
@@ -170,4 +171,12 @@ class MineFragment : LazyFragment<MineContract.Presenter<MineContract.View>>(),V
         tvRanking.text = "0"
         tvIntegral.text = "0"
     }
+
+//    @Subscribe
+//    fun settingEvent(event: SettingChangeEvent) {
+//        tvUserName.text = "不需要登录就可以玩"
+//        tvId.text = "开心"
+//        tvRanking.text = "121"
+//        tvIntegral.text = "0213333"
+//    }
 }
