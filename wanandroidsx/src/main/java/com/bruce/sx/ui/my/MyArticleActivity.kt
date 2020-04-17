@@ -36,6 +36,13 @@ import org.greenrobot.eventbus.ThreadMode
 class MyArticleActivity: BaseActivity<MyArticleContract.Presenter<MyArticleContract.View>>()
     ,MyArticleContract.View , OnLoadMoreListener, OnRefreshListener, ReloadListener
     , BaseQuickAdapter.OnItemChildClickListener{
+    override fun showLoading() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun closeLoading() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     private var currentPosition = 0
     private var articleAdapter: MyArticleAdapter? = null

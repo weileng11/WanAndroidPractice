@@ -22,6 +22,13 @@ import kotlinx.android.synthetic.main.activity_set.*
  */
 class SetActivity : BaseActivity<SetContract.Presenter<SetContract.View>>(),SetContract.View ,
     View.OnClickListener {
+    override fun showLoading() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun closeLoading() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
 
     override fun init(savedInstanceState: Bundle?) {

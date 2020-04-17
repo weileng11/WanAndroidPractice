@@ -7,6 +7,8 @@ import com.google.gson.JsonParseException;
 import org.json.JSONException;
 
 import java.net.ConnectException;
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
 
 import retrofit2.HttpException;
 
@@ -60,6 +62,14 @@ public class ExceptionHandle {
             ex = new ResponeThrowable(e, ERROR.PARSE_ERROR);
             ex.message = "解析错误";
             return ex;
+        } else if (e instanceof UnknownHostException) {
+            ex = new ResponeThrowable(e, ERROR.PARSE_ERROR);
+            ex.message = "网络异常，请检查网络设置";
+            return ex;
+        }else if (e instanceof SocketTimeoutException) {
+            ex = new ResponeThrowable(e, ERROR.PARSE_ERROR);
+            ex.message = "连接超时";
+            return ex;
         } else if (e instanceof ConnectException) {
             ex = new ResponeThrowable(e, ERROR.NETWORD_ERROR);
             ex.message = "连接失败";
@@ -73,6 +83,7 @@ public class ExceptionHandle {
             ex.message = "未知错误";
             return ex;
         }
+
     }
 
 

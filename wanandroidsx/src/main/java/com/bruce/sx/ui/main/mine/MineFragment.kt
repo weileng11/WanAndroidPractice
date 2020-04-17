@@ -35,6 +35,13 @@ import org.greenrobot.eventbus.ThreadMode
  */
 class MineFragment : LazyFragment<MineContract.Presenter<MineContract.View>>(),View.OnClickListener,
     MineContract.View {
+    override fun showLoading() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun closeLoading() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     private var integralEntity: IntegralEntity? = null
     override fun onCreate(savedInstanceState: Bundle?) {

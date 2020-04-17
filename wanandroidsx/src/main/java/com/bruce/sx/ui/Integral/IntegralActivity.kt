@@ -29,6 +29,13 @@ import kotlinx.android.synthetic.main.activity_integral.*
  */
 class IntegralActivity : BaseActivity<IntegralContract.Presenter<IntegralContract.View>>()
     ,IntegralContract.View , OnLoadMoreListener, ReloadListener {
+    override fun showLoading() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun closeLoading() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     private var integralRecordEntity: IntegralRecordEntity? = null
     private var integralAdapter: IntegralAdapter? = null

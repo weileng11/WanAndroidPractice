@@ -19,6 +19,13 @@ import kotlinx.android.synthetic.main.activity_share_articel.*
  */
 class ShareArticleActivity : BaseActivity<ShareContract.Presenter<ShareContract.View>>(),
     ShareContract.View, View.OnClickListener {
+    override fun showLoading() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun closeLoading() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     override fun init(savedInstanceState: Bundle?) {
         ivBack.setOnClickListener(this)

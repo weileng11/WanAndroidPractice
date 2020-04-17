@@ -21,6 +21,13 @@ import kotlinx.android.synthetic.main.activity_register.*
  */
 class RegisterActivity : BaseActivity<RegisterContract.Presenter<RegisterContract.View>>()
     , RegisterContract.View, View.OnClickListener {
+    override fun showLoading() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun closeLoading() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     /**
      * 密码是否显示明文

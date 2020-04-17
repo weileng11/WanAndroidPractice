@@ -31,6 +31,13 @@ import kotlinx.android.synthetic.main.activity_system.*
 class SystemActivity : BaseActivity<SystemContract.Presenter<SystemContract.View>>(),
     SystemContract.View, OnCollectClickListener,
     OnLoadMoreListener, OnRefreshListener, ReloadListener, BaseQuickAdapter.OnItemClickListener {
+    override fun showLoading() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun closeLoading() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     private var systemAdapter: ArticleAdapter? = null
     private var systemList = mutableListOf<ArticleEntity.DatasBean>()

@@ -27,6 +27,13 @@ import kotlinx.android.synthetic.main.activity_rank.*
  */
 class RankActivity : BaseActivity<RankContract.Presenter<RankContract.View>>(), RankContract.View
     , OnLoadMoreListener, OnRefreshListener, ReloadListener {
+    override fun showLoading() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun closeLoading() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     private var rankAdapter: RankAdapter? = null
     private var pageNum = 1

@@ -23,6 +23,13 @@ import kotlinx.android.synthetic.main.fragment_system_list.*
  */
 class NavigationFragment : LazyFragment<NavigationContract.Presenter<NavigationContract.View>>()
     , NavigationContract.View , OnSystemClickListener {
+    override fun showLoading() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun closeLoading() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     private var navigationList = mutableListOf<NavigationEntity>()
     private var navigationAdapter: NavigationAdapter? = null

@@ -20,6 +20,7 @@ import ren.yale.android.retrofitcachelibrx2.RetrofitCache
 import ren.yale.android.retrofitcachelibrx2.CacheInterceptorListener
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import com.bruce.sx.weight.loadCallBack.NetNoCallback
 import okhttp3.Request
 import okhttp3.Response
 import java.io.IOException
@@ -50,6 +51,7 @@ class WanAndroidApplication : Application() {
             .addCallback(LoadingCallback())//加载
             .addCallback(ErrorCallback())//错误
             .addCallback(EmptyCallback())//空
+            .addCallback(NetNoCallback())//网
             .setDefaultCallback(SuccessCallback::class.java)//设置默认加载状态页
             .commit()
 
@@ -57,17 +59,17 @@ class WanAndroidApplication : Application() {
         //也可以修改默认配置，默认time=0，timeUnit = TimeUnit.SECONDS
         //RetrofitCache.getInstance().init(this).setDefaultTimeUnit(TimeUnit.MINUTES).setDefaultTime(1);
         //setCacheInterceptorListener 设置是否每一个接口都缓存
-        RetrofitCache.getInstance().cacheInterceptorListener = object : CacheInterceptorListener {
-            override fun canCache(request: Request?, response: Response?): Boolean {
-//                var res = ""
-//                try {
-//                    res = response?.body()!!.string()
-//                } catch (e: IOException) {
-//                    e.printStackTrace()
-//                }
-                return true
-            }
-        }
+//        RetrofitCache.getInstance().cacheInterceptorListener = object : CacheInterceptorListener {
+//            override fun canCache(request: Request?, response: Response?): Boolean {
+////                var res = ""
+////                try {
+////                    res = response?.body()!!.string()
+////                } catch (e: IOException) {
+////                    e.printStackTrace()
+////                }
+//                return true
+//            }
+//        }
     }
 
     init {

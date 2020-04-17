@@ -23,6 +23,13 @@ import kotlinx.android.synthetic.main.fragment_system_list.*
  */
 class SystemListFragment :LazyFragment<SystemListContract.Presenter<SystemListContract.View>>(),
     SystemListContract.View, OnSystemClickListener {
+    override fun showLoading() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun closeLoading() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     private var systemAdapter:SystemAdapter? = null
     private var systemList: MutableList<SystemListEntity>? = null

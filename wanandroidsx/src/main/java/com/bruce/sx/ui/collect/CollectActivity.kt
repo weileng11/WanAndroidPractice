@@ -30,6 +30,13 @@ import kotlinx.android.synthetic.main.activity_collect.*
  */
 class CollectActivity : BaseActivity<CollectContract.Presenter<CollectContract.View>>(),CollectContract.View
     , OnCollectClickListener, OnLoadMoreListener, OnRefreshListener, ReloadListener, BaseQuickAdapter.OnItemClickListener {
+    override fun closeLoading() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun showLoading() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     private var collectAdapter: CollectAdapter? = null
     private var collectList = mutableListOf<CollectEntity.DatasBean>()

@@ -28,6 +28,11 @@ import kotlinx.android.synthetic.main.activity_register.ivPasswordVisibility
  */
 class LoginActivity : BaseActivity<LoginContract.Presenter<LoginContract.View>>(),
     LoginContract.View, View.OnClickListener{
+    override fun showLoading() {
+    }
+
+    override fun closeLoading() {
+    }
 
     /**
      * 是否显示明文

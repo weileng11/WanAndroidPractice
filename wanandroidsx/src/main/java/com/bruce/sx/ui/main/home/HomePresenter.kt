@@ -34,13 +34,15 @@ class HomePresenter(view: HomeContract.View) : BasePresenter<HomeContract.View>(
      * 加载首页文章列表
      */
     override fun loadData(pageNum: Int) {
-        if (!StaticUtils.hasNetwork(WanAndroidApplication.context!!.applicationContext)) {
-            ToastUtils.show( "网络异常,请检查网络")
-            return
-        }
+//        if (!StaticUtils.hasNetwork(WanAndroidApplication.context!!.applicationContext)) {
+//            ToastUtils.show( "网络异常,请检查网络")
+//            return
+//        }
+//        view?.showLoading()
         HttpManager.doHttpRequest(model?.loadData(pageNum),
             object : HttpCallBack<ArticleEntity> {
                 override fun success(t: ArticleEntity?) {
+//                    view?.closeLoading()
                     if (pageNum == 0) {
                         t?.datas?.let { loadTopList(it) }
                     } else {

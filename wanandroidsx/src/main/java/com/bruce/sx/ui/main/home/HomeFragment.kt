@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.LinearLayoutManager
 import cn.bingoogolapple.bgabanner.BGABanner
@@ -14,6 +15,7 @@ import com.bruce.sx.adapter.ArticleAdapter
 import com.bruce.sx.adapter.OnCollectClickListener
 import com.bruce.sx.annotation.BindEventBus
 import com.bruce.sx.base.LazyFragment
+import com.bruce.sx.base.WanAndroidApplication
 import com.bruce.sx.constants.Constants
 import com.bruce.sx.entity.ArticleEntity
 import com.bruce.sx.entity.BannerEntity
@@ -24,15 +26,18 @@ import com.bruce.sx.ui.search.SearchActivity
 import com.bruce.sx.ui.web.WebActivity
 import com.bruce.sx.utils.AppManager
 import com.bruce.sx.utils.SettingUtil
+import com.bruce.sx.utils.StaticUtils
 import com.bruce.sx.utils.ToastUtils
 import com.bruce.sx.weight.ReloadListener
 import com.bruce.sx.weight.loadCallBack.EmptyCallback
 import com.bruce.sx.weight.loadCallBack.ErrorCallback
 import com.bruce.sx.weight.loadCallBack.LoadingCallback
+import com.bruce.sx.weight.loadCallBack.NetNoCallback
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.kingja.loadsir.core.LoadService
 import com.kingja.loadsir.core.LoadSir
+import com.kingja.loadsir.core.Transport
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener
@@ -55,10 +60,15 @@ class HomeFragment : LazyFragment<HomeContract.Presenter<HomeContract.View>>(),
     BGABanner.Adapter<ImageView?, String?>, BGABanner.Delegate<ImageView?, String?>
     , HomeContract.View, OnLoadMoreListener, OnRefreshListener, ReloadListener
     , BaseQuickAdapter.OnItemClickListener, OnCollectClickListener {
+
     override fun showLoading() {
+        //界面加载失败，或者没有数据时，点击重试的监听
+        loadsir.showCallback(LoadingCallback::class.java)
     }
 
     override fun closeLoading() {
+        //成功关闭load
+        loadsir.showSuccess()
     }
 
     private var pageNum: Int = 0
@@ -84,13 +94,27 @@ class HomeFragment : LazyFragment<HomeContract.Presenter<HomeContract.View>>(),
 //        loadingTip.loading()
         //绑定loadsir
         loadsir = LoadSir.getDefault().register(smartRefresh){
-            //界面加载失败，或者没有数据时，点击重试的监听
             loadsir.showCallback(LoadingCallback::class.java)
             loadData()
         }.apply {
             //获取主题颜色并设置
             activity?.let { SettingUtil.setLoadingColor(it, this) }
         }
+//        //检测有没有网络，没有显示没有网络布局
+//        if (!StaticUtils.hasNetwork(WanAndroidApplication.context!!.applicationContext)) {
+//            loadsir.showCallback(NetNoCallback::class.java)
+//            loadsir.setCallBack(NetNoCallback::class.java,object :Transport{
+//                override fun order(context: Context?, view: View?) {
+//                    val bt = view?.findViewById(R.id.btn_cs) as TextView
+//                    bt.setOnClickListener {
+////                        showLoading()
+//                        loadData() }
+//                }
+//            })
+//        }else{
+//            showLoading()
+//            loadData()
+//        }
         loadsir.showCallback(LoadingCallback::class.java)
         loadData()
     }
@@ -219,7 +243,9 @@ class HomeFragment : LazyFragment<HomeContract.Presenter<HomeContract.View>>(),
             articleList.addAll(list)
             articleAdapter?.setNewData(articleList)
         } else {
-            if (articleList.size == 0) loadsir.showCallback(EmptyCallback::class.java)
+            if (articleList.size == 0)
+                //无数据
+                loadsir.showCallback(EmptyCallback::class.java)
 //                loadingTip.showEmpty()
             else ToastUtils.show("没有数据啦...")
         }
@@ -281,11 +307,21 @@ class HomeFragment : LazyFragment<HomeContract.Presenter<HomeContract.View>>(),
 
     override fun onError(error: String) {
         lockCollectClick = true
-        //请求失败将page -1
-        if (pageNum>0)pageNum--
-//        loadingTip.dismiss()
-        loadsir.showCallback(ErrorCallback::class.java)
         dismissRefresh()
+        //请求失败将page -1
+        if(pageNum==0){
+            loadsir.showCallback(ErrorCallback::class.java)
+            //如果页码是 初始页 说明是刷新，界面切换成错误页
+            loadsir.setCallBack(ErrorCallback::class.java) { _, view ->
+                //设置错误页文字错误提示
+                view.findViewById<TextView>(R.id.error_text).text = error
+            }
+            //设置错误
+            loadsir.showCallback(ErrorCallback::class.java)
+        }else{
+            pageNum--
+            //页码不是0 说明是加载更多时出现的错误，设置recyclerview加载错误，
+        }
         ToastUtils.show(error)
     }
 
@@ -293,7 +329,6 @@ class HomeFragment : LazyFragment<HomeContract.Presenter<HomeContract.View>>(),
      * 加载更多
      */
     override fun onLoadMore(refreshLayout: RefreshLayout) {
-
         pageNum++
         presenter?.loadData(pageNum)
     }
@@ -310,7 +345,7 @@ class HomeFragment : LazyFragment<HomeContract.Presenter<HomeContract.View>>(),
      */
     override fun reload() {
 //        loadingTip.loading()
-        loadsir.showCallback(LoadingCallback::class.java)
+//        loadsir.showCallback(LoadingCallback::class.java)
         loadData()
     }
 

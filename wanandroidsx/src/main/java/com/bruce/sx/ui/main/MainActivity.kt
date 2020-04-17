@@ -26,6 +26,13 @@ import kotlinx.android.synthetic.main.activity_main.*
  * @time:  11:28
  */
 class MainActivity : BaseActivity<IBasePresenter<*>>(), IBaseView {
+    override fun showLoading() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun closeLoading() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     private var lastIndex = 0
     private var fragments: MutableList<Fragment> = mutableListOf()

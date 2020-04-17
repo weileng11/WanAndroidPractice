@@ -42,7 +42,8 @@ public class HttpManager {
 //                        Throwable throwable1 = new Exception("网络异常,请检查网络");
 //                        callBack.fail(throwable1);
 
-                        ExceptionHandle.handleException(throwable);
+                        ExceptionHandle.ResponeThrowable rt=ExceptionHandle.handleException(throwable);
+                        callBack.error(rt.message);
 //                        errorException(throwable,callBack);
                     }
                 });

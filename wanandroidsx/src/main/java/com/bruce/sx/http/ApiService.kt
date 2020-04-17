@@ -34,7 +34,7 @@ interface ApiService {
     /**
      * 获取首页置顶文章数据
      */
-    @Cache(time = 20, timeUnit=TimeUnit.MINUTES) //缓存设置为20分钟
+    @Cache(time = 10) //缓存设置为20分钟
     @GET("/article/top/json")
     fun getTopList(): Observable<BaseResponse<MutableList<ArticleEntity.DatasBean>>>
 

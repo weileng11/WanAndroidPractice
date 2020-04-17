@@ -40,6 +40,13 @@ import kotlinx.android.synthetic.main.activity_search.*
 class SearchActivity  : BaseActivity<SearchContract.Presenter<SearchContract.View>>(),SearchContract.View
     , View.OnClickListener, OnLoadMoreListener, ReloadListener, BaseQuickAdapter.OnItemClickListener,
     OnCollectClickListener {
+    override fun showLoading() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun closeLoading() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     private var keyWord: String? = null
     private var rlInitWidth: Int = 0
