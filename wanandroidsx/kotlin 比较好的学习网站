@@ -1,3 +1,25 @@
 https://blog.csdn.net/github_33304260/article/details/80343514
 
 https://www.kotlincn.net/docs/reference/coroutines/cancellation-and-timeouts.html
+
+
+Android Jetpack
+在本次开发者大会上，Google发布了Android Jetpack，这是我们的新一代 组件、工具和架构指导 ，旨在加快开发者的 Android 应用开发速度。
+
+这对 Android原生开发 来讲，无疑是个 重磅炸弹，众所周知，2017年的GoogleIO大会上，官方为Android开发者推出了 一系列的 架构组件，比如 Lifecycle，LiveData，Room，ViewModel等，旨在推出 官方认证 的 Android架构 方案。
+
+而本次IO大会上，Android Jetpack的推出，从 架构（Architecture），UI，基础（Foundation）及行为（Behavior）四个方面，推出了一套 官方认证 的 开发体系。
+
+让我们通过一张图了解 Android Jetpack 的详细组成：
+
+
+
+本次的 Android Jetpack 推出了五个新组件，它们分别是：
+
+Navigation
+Paging
+WorkManager
+Slices
+Android KTX
+————————————————
+原文链接：https://qingmei2.blog.csdn.net/article/details/80534124

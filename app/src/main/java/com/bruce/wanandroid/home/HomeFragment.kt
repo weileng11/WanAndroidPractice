@@ -12,6 +12,8 @@ import com.bruce.wanandroid.base.mvp.BaseMVPFragment
 import com.bruce.wanandroid.home.adapter.HomeRecyclerAdapter
 import com.bruce.wanandroid.home.bean.Article
 import com.bruce.wanandroid.home.contract.HomeContract
+import com.bruce.wanandroid.main.bean.LoggedInEvent
+import com.bruce.wanandroid.main.bean.TestEvent
 import com.bruce.wanandroid.project.presenter.HomePresenter
 import com.bruce.wanandroid.utils.*
 import com.bruce.wanandroid.web.WebViewActivity
@@ -26,6 +28,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener
 import com.youth.banner.Banner
 import com.youth.banner.listener.OnBannerListener
 import com.youth.banner.loader.ImageLoader
+import org.greenrobot.eventbus.EventBus
 
 
 class HomeFragment : BaseMVPFragment<HomeContract.View, HomePresenter>(), HomeContract.View {
@@ -89,6 +92,7 @@ class HomeFragment : BaseMVPFragment<HomeContract.View, HomePresenter>(), HomeCo
         presenter.getArticles(mCurPage)
 
         setListener()
+
     }
 
     private fun setListener() {

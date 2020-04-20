@@ -21,6 +21,7 @@ import com.bruce.wanandroid.gank.GankFragment
 import com.bruce.wanandroid.home.HomeFragment
 import com.bruce.wanandroid.main.adapter.MainViewPageAdapter
 import com.bruce.wanandroid.main.bean.LoggedInEvent
+import com.bruce.wanandroid.main.bean.TestEvent
 import com.bruce.wanandroid.main.contract.MainContract
 import com.bruce.wanandroid.main.presenter.MainPresenter
 import com.bruce.wanandroid.main.widgets.MainViewPager
@@ -38,6 +39,7 @@ import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import com.jaeger.library.StatusBarUtil
 import com.xing.wanandroid.db.DbManager
+import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import kotlin.system.exitProcess
@@ -115,6 +117,8 @@ class MainActivity : BaseMVPActivity<MainContract.View,MainPresenter>(),MainCont
         //模糊度
         val bitmap = BitmapFactory.decodeResource(resources, R.drawable.avatar)
         avatarBackground.setImageBitmap(blur(mContext, bitmap, 22))
+
+        EventBus.getDefault().post(TestEvent())
     }
 
     override fun initData() {
