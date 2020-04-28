@@ -8,10 +8,12 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/JetpackMvvm" />
             <option value="$PROJECT_DIR$/RxhttpLx" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/databing" />
             <option value="$PROJECT_DIR$/ktglobalscopelx" />
+            <option value="$PROJECT_DIR$/wanandroidmvvm_sx" />
             <option value="$PROJECT_DIR$/wanandroidsx" />
           </set>
         </option>

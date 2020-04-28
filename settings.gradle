@@ -1,2 +1,2 @@
-include ':app', ':RxhttpLx',  ':wanandroidsx', ':ktglobalscopelx', ':databing'
+include ':app', ':RxhttpLx', ':wanandroidsx', ':ktglobalscopelx', ':databing', ':wanandroidmvvm_sx', ':JetpackMvvm'
 rootProject.name='WanAndroidPractice'
