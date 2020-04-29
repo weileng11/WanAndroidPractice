@@ -21,6 +21,7 @@ import ren.yale.android.retrofitcachelibrx2.CacheInterceptorListener
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import com.bruce.sx.weight.loadCallBack.NetNoCallback
+import com.jeremyliao.liveeventbus.LiveEventBus
 import okhttp3.Request
 import okhttp3.Response
 import java.io.IOException
@@ -70,6 +71,12 @@ class WanAndroidApplication : Application() {
 //                return true
 //            }
 //        }
+
+        LiveEventBus.
+            config().
+            supportBroadcast(this).
+            lifecycleObserverAlwaysActive(true).
+            autoClear(false)
     }
 
     init {

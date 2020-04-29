@@ -11,6 +11,7 @@ import com.bruce.sx.constants.Constants
 import com.bruce.sx.ui.register.RegisterActivity
 import com.bruce.sx.utils.PrefUtils
 import com.bruce.sx.utils.ToastUtils
+import com.jeremyliao.liveeventbus.LiveEventBus
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_register.etPassword
 import kotlinx.android.synthetic.main.activity_register.etUsername
@@ -56,6 +57,7 @@ class LoginActivity : BaseActivity<LoginContract.Presenter<LoginContract.View>>(
                     password.isEmpty() -> ToastUtils.show("请输入密码")
                     else -> {
                         setViewStatus(false)
+                        LiveEventBus.get("key").post("value");
                         presenter?.login(username,password)
                     }
                 }

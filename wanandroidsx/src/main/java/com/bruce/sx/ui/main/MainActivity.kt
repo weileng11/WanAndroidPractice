@@ -2,9 +2,11 @@ package com.bruce.sx.ui.main
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.Observer
 import com.bruce.sx.R
 import com.bruce.sx.base.BaseActivity
 import com.bruce.sx.base.IBasePresenter
@@ -15,6 +17,7 @@ import com.bruce.sx.ui.main.mine.MineFragment
 import com.bruce.sx.ui.main.system.SystemFragment
 import com.bruce.sx.ui.main.tab.TabFragment
 import com.bruce.sx.utils.ToastUtils
+import com.jeremyliao.liveeventbus.LiveEventBus
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
@@ -42,6 +45,21 @@ class MainActivity : BaseActivity<IBasePresenter<*>>(), IBaseView {
     override fun init(savedInstanceState: Bundle?) {
         initFragment()
         initBottom()
+
+//        LiveEventBus.get("key",String.class).observe(this, new Observer<String>() {
+//            @Override
+//            public void onChanged(@Nullable String s) {
+//                Log.i(TAG,s);
+//            }
+//        });
+
+        LiveEventBus.get("key").observe(this, object :Observer<Any>{
+            override fun onChanged(t: Any?) {
+                Log.i("info","测试LiveEventBus"+t.toString())
+                ToastUtils.show("ccccc")
+            }
+
+        })
     }
 
     private fun initBottom() {
