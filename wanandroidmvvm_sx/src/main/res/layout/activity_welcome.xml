@@ -19,7 +19,7 @@
             android:layout_height="match_parent"
             app:bvp_auto_play="false"
             app:bvp_can_loop="false"
-            app:bvp_indicator_checked_color="@color/accent"
+            app:bvp_indicator_checked_color="@color/black"
             app:bvp_indicator_gravity="center"
             app:bvp_indicator_normal_color="@color/white"
             app:bvp_indicator_slide_mode="worm"
@@ -28,7 +28,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
         <TextView
             android:id="@+id/button2"
@@ -40,6 +41,7 @@
             android:paddingRight="12dp"
             android:paddingBottom="8dp"
             android:text="立即进入"
+            android:background="@color/black"
             android:textColor="@color/white"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
