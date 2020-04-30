@@ -80,6 +80,7 @@ fun LoadServiceInit(view: View, callback: () -> Unit): LoadService<Any> {
         callback.invoke()
     }
     loadsir.showCallback(LoadingCallback::class.java)
+    //设置颜色
     SettingUtil.setLoadingColor(SettingUtil.getColor(view.context.applicationContext), loadsir)
     return loadsir
 

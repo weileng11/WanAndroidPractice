@@ -10,6 +10,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <!-- 标题栏-->
         <include layout="@layout/include_toolbar" />
 
       <include layout="@layout/include_list"/>

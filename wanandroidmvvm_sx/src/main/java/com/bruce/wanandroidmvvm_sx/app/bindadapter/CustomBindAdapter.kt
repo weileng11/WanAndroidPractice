@@ -20,6 +20,7 @@ import me.hgj.jetpackmvvm.ext.view.afterTextChange
  * 作者　: hegaojian
  * 时间　: 2019/12/23
  * 描述　: 自定义 BindingAdapter
+ * （databing BindingAdapter）https://blog.csdn.net/guiying712/article/details/80411597
  */
 object CustomBindAdapter {
 

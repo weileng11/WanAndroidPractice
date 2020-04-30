@@ -49,6 +49,7 @@ android {
                 '--set-max-idx-number=60000'//每个包内方法数上限
         ]
     }
+    androidExtensions { experimental = true }
 }
 
 dependencies {
