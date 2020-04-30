@@ -30,11 +30,9 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigat
 class TabFragment : BaseFragment<TabContract.Presenter<TabContract.View>>()
     ,TabContract.View ,OnTabClickListener{
     override fun showLoading() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun closeLoading() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     private var tabList = mutableListOf<TabEntity>()

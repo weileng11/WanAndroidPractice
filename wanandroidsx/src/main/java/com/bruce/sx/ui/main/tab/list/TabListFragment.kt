@@ -34,11 +34,9 @@ class TabListFragment : LazyFragment<TabListContract.Presenter<TabListContract.V
     , TabListContract.View, OnCollectClickListener, BaseQuickAdapter.OnItemClickListener
     , OnLoadMoreListener, OnRefreshListener, ReloadListener {
     override fun showLoading() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun closeLoading() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     private var projectList = mutableListOf<ArticleEntity.DatasBean>()

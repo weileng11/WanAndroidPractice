@@ -219,6 +219,7 @@ fun MagicIndicator.bindViewPager2(
     mStringList: ArrayList<String> = arrayListOf(),
     action: (index: Int) -> Unit = {}
 ) {
+    //条目数量
     val commonNavigator = CommonNavigator(context.applicationContext)
     commonNavigator.adapter = object : CommonNavigatorAdapter() {
         override fun getCount(): Int {
@@ -229,6 +230,7 @@ fun MagicIndicator.bindViewPager2(
             }
         }
 
+        //设置title颜色和监听点击下标
         override fun getTitleView(context: Context, index: Int): IPagerTitleView {
             return ScaleTransitionPagerTitleView(context.applicationContext).apply {
                 text = if (mDataList.size != 0) {
@@ -246,6 +248,7 @@ fun MagicIndicator.bindViewPager2(
             }
         }
 
+        //滑动设置
         override fun getIndicator(context: Context): IPagerIndicator {
             return LinePagerIndicator(context).apply {
                 mode = LinePagerIndicator.MODE_EXACTLY
@@ -288,7 +291,7 @@ fun MagicIndicator.bindViewPager2(
 
 fun ViewPager2.init(
     fragment: Fragment,
-    fragments: ArrayList<Fragment>,
+    fragments: MutableList<Fragment>,
     isUserInputEnabled: Boolean = true
 ): ViewPager2 {
     //是否可滑动
