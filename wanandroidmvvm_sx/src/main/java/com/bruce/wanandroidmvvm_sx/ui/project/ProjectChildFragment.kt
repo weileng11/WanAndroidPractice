@@ -89,25 +89,25 @@ class ProjectChildFragment : BaseFragment<ProjectViewModel, IncludeListBinding>(
                         }
                     } else {
                         v.isChecked = true
-//                        Navigation.findNavController(v)
-//                            .navigate(R.id.action_mainFragment_to_loginFragment)
+                        Navigation.findNavController(v)
+                            .navigate(R.id.action_mainFragment_to_loginFragment)
                     }
                 }
             })
             setOnItemClickListener { adapter, view, position ->
-//                Navigation.findNavController(view)
-//                    .navigate(R.id.action_mainfragment_to_webFragment, Bundle().apply {
-//                        putSerializable("ariticleData",articleAdapter.data[position])
-//                    })
+                Navigation.findNavController(view)
+                    .navigate(R.id.action_mainfragment_to_webFragment, Bundle().apply {
+                        putSerializable("ariticleData",articleAdapter.data[position])
+                    })
             }
             addChildClickViewIds(R.id.item_home_author)
             addChildClickViewIds(R.id.item_project_author)
             setOnItemChildClickListener { adapter, view, position ->
                 when(view.id){
                     R.id.item_home_author,R.id.item_project_author ->{
-//                        Navigation.findNavController(view).navigate(R.id.action_mainfragment_to_lookInfoFragment,Bundle().apply {
-//                            putInt("id",articleAdapter.data[position].userId)
-//                        })
+                        Navigation.findNavController(view).navigate(R.id.action_mainfragment_to_lookInfoFragment,Bundle().apply {
+                            putInt("id",articleAdapter.data[position].userId)
+                        })
                     }
                 }
             }

@@ -81,18 +81,18 @@ class MeFragment  : BaseFragment<MeViewModel, FragmentMeBinding>() {
         setOnclickNoRepeat(me_about,me_join,me_setting){
             when(it.id){
                 R.id.me_about ->{
-//                    Navigation.findNavController(it).navigate(R.id.action_mainfragment_to_webFragment,
-//                        Bundle().apply {
-//                            putSerializable("bannerdata",
-//                                BannerResponse(title = "玩Android网站",url = "https://www.wanandroid.com/")
-//                            )
-//                        })
+                    Navigation.findNavController(it).navigate(R.id.action_mainfragment_to_webFragment,
+                        Bundle().apply {
+                            putSerializable("bannerdata",
+                                BannerResponse(title = "玩Android网站",url = "https://www.wanandroid.com/")
+                            )
+                        })
                 }
                 R.id.me_join ->{
                     joinQQGroup("9n4i5sHt4189d4DvbotKiCHy-5jZtD4D")
                 }
                 R.id.me_setting ->{
-//                    Navigation.findNavController(it).navigate(R.id.action_mainfragment_to_settingFragment)
+                    Navigation.findNavController(it).navigate(R.id.action_mainfragment_to_settingFragment)
                 }
             }
         }
@@ -102,20 +102,20 @@ class MeFragment  : BaseFragment<MeViewModel, FragmentMeBinding>() {
 
                 }
                 R.id.me_integralLinear ->{
-//                    Navigation.findNavController(it).navigate(R.id.action_mainfragment_to_integralFragment,
-//                        Bundle().apply {
-//                            putSerializable("rank",rank)
-//                        }
-//                    )
+                    Navigation.findNavController(it).navigate(R.id.action_mainfragment_to_integralFragment,
+                        Bundle().apply {
+                            putSerializable("rank",rank)
+                        }
+                    )
                 }
                 R.id.me_collect ->{
-//                    Navigation.findNavController(it).navigate(R.id.action_mainfragment_to_collectFragment)
+                    Navigation.findNavController(it).navigate(R.id.action_mainfragment_to_collectFragment)
                 }
                 R.id.me_article ->{
-//                    Navigation.findNavController(it).navigate(R.id.action_mainfragment_to_ariticleFragment)
+                    Navigation.findNavController(it).navigate(R.id.action_mainfragment_to_ariticleFragment)
                 }
                 R.id.me_todo ->{
-//                    Navigation.findNavController(it).navigate(R.id.action_mainfragment_to_todoListFragment)
+                    Navigation.findNavController(it).navigate(R.id.action_mainfragment_to_todoListFragment)
                 }
             }
         }

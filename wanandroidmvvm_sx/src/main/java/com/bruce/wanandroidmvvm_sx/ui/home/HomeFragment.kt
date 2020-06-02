@@ -65,8 +65,8 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(){
             inflateMenu(R.menu.home_menu)
             setOnMenuItemClickListener {
                 when (it.itemId) {
-                    R.id.home_search -> {
-//                        Navigation.findNavController(this).navigate(R.id.action_mainfragment_to_searchFragment)
+                    R.id.home_search -> { //搜索
+                        Navigation.findNavController(this).navigate(R.id.action_mainfragment_to_searchFragment)
                     }
                 }
                 true
@@ -104,27 +104,28 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(){
 
                     } else {
                         v.isChecked = true
-//                        Navigation.findNavController(v)
-//                            .navigate(R.id.action_mainFragment_to_loginFragment)
+                        //登录页
+                        Navigation.findNavController(v)
+                            .navigate(R.id.action_mainFragment_to_loginFragment)
                     }
                 }
             })
             //item点击
             setOnItemClickListener { adapter, view, position ->
-//                Navigation.findNavController(view)
-//                    .navigate(R.id.action_mainfragment_to_webFragment, Bundle().apply {
-//                        putSerializable("ariticleData",articleAdapter.data[position-recyclerView.headerCount])
-//                    })
+                Navigation.findNavController(view)
+                    .navigate(R.id.action_mainfragment_to_webFragment, Bundle().apply {
+                        putSerializable("ariticleData",articleAdapter.data[position-recyclerView.headerCount])
+                    })
             }
             addChildClickViewIds(R.id.item_home_author)
             addChildClickViewIds(R.id.item_project_author)
             setOnItemChildClickListener { adapter, view, position ->
                 when(view.id){
                     R.id.item_home_author,R.id.item_project_author ->{
-//                        Navigation.findNavController(view).navigate(R.id.action_mainfragment_to_lookInfoFragment,
-//                            Bundle().apply {
-//                                putInt("id",articleAdapter.data[position-recyclerView.headerCount].userId)
-//                            })
+                        Navigation.findNavController(view).navigate(R.id.action_mainfragment_to_lookInfoFragment,
+                            Bundle().apply {
+                                putInt("id",articleAdapter.data[position-recyclerView.headerCount].userId)
+                            })
                     }
                 }
             }
@@ -190,11 +191,11 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(){
                                     bannerview.setHolderCreator {
                                         HomeBannerViewHolder()
                                     }.setOnPageClickListener {
-//                                        Navigation.findNavController(this).navigate(R.id.action_mainfragment_to_webFragment,
-//                                            Bundle().apply {
-//                                                putSerializable("bannerdata",data[it])
-//                                            }
-//                                        )
+                                        Navigation.findNavController(this).navigate(R.id.action_mainfragment_to_webFragment,
+                                            Bundle().apply {
+                                                putSerializable("bannerdata",data[it])
+                                            }
+                                        )
                                     }.create(data.toList())
                                 }
                         recyclerView.addHeaderView(headview)

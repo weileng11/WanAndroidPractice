@@ -1,7 +1,9 @@
 package com.bruce.wanandroidmvvm_sx.ui.tree
 
+import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ConvertUtils
 import com.bruce.wanandroidmvvm_sx.R
@@ -52,11 +54,11 @@ class NavigationFragment : BaseFragment<TreeViewModel, IncludeListBinding>() {
         navigationAdapter.setNavigationClickInterFace(object :
             NavigationAdapter.NavigationClickInterFace {
             override fun onNavigationClickListener(item: AriticleResponse, view: View) {
-//                Navigation.findNavController(view).navigate(R.id.action_mainfragment_to_webFragment,
-//                    Bundle().apply {
-//                        putSerializable("ariticleData", item)
-//                    }
-//                )
+                Navigation.findNavController(view).navigate(R.id.action_mainfragment_to_webFragment,
+                    Bundle().apply {
+                        putSerializable("ariticleData", item)
+                    }
+                )
             }
         })
     }

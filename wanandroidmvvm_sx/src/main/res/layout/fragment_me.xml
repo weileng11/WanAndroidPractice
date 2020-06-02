@@ -100,27 +100,27 @@
                             <LinearLayout
                                 android:id="@+id/me_integralLinear"
                                 android:layout_width="match_parent"
-                                android:layout_height="50dp"
+                                android:layout_height="52dp"
                                 android:background="?attr/selectableItemBackground"
                                 android:gravity="center_vertical"
+                                android:orientation="horizontal"
                                 android:paddingLeft="16dp"
-                                android:paddingRight="16dp"
-                                android:orientation="horizontal">
+                                android:paddingRight="16dp">
 
                                 <ImageView
                                     android:layout_width="24dp"
                                     android:layout_height="24dp"
-                                    android:src="@drawable/jifen"
-                                    android:layout_marginRight="16dp" />
+                                    android:layout_marginRight="16dp"
+                                    android:src="@drawable/jifen" />
 
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:text="我的积分"
-                                    android:textStyle="bold"
                                     android:textColor="@color/colorBlack333"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    android:textStyle="bold" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -136,10 +136,10 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginRight="8dp"
                                     android:text="@{String.valueOf(vm.integral)}"
-                                    tools:text="0"
                                     android:textColor="@color/colorPrimary"
                                     android:textSize="15dp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:text="0" />
 
                                 <ImageView
                                     android:layout_width="16dp"

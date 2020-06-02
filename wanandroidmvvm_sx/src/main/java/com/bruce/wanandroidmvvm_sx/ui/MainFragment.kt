@@ -1,7 +1,10 @@
 package com.bruce.wanandroidmvvm_sx.ui
 
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.FragmentNavigator
+import androidx.navigation.fragment.findNavController
 import com.bruce.wanandroidmvvm_sx.R
 import com.bruce.wanandroidmvvm_sx.app.base.BaseFragment
 import com.bruce.wanandroidmvvm_sx.app.ext.init
@@ -15,6 +18,7 @@ import com.bruce.wanandroidmvvm_sx.ui.publicNumber.PublicNumberFragment
 import com.bruce.wanandroidmvvm_sx.ui.tree.TreeArrFragment
 import kotlinx.android.synthetic.main.fragment_main.*
 import me.hgj.jetpackmvvm.BaseViewModel
+import me.hgj.jetpackmvvm.util.ActivityMessenger.finish
 
 /**
  * @author: bruce
@@ -83,4 +87,5 @@ class MainFragment : BaseFragment<BaseViewModel, FragmentMainBinding>() {
             setUiTheme(it, main_bottom)
         })
     }
+
 }

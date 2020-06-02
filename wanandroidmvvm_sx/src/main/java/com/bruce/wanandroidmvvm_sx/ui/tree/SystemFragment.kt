@@ -1,7 +1,9 @@
 package com.bruce.wanandroidmvvm_sx.ui.tree
 
+import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ConvertUtils
 import com.bruce.wanandroidmvvm_sx.R
@@ -50,20 +52,20 @@ class SystemFragment: BaseFragment<TreeViewModel, IncludeListBinding>(){
         }
         systemAdapter.run {
             setOnItemClickListener { _, view, position ->
-//                Navigation.findNavController(view).navigate(R.id.action_mainfragment_to_systemArrFragment,
-//                    Bundle().apply {
-//                        putSerializable("data",systemAdapter.data[position])
-//                    }
-//                )
+                Navigation.findNavController(view).navigate(R.id.action_mainfragment_to_systemArrFragment,
+                    Bundle().apply {
+                        putSerializable("data",systemAdapter.data[position])
+                    }
+                )
             }
             setSystemClickInterFace(object :SystemAdapter.SystemClickInterFace{
                 override fun onSystemClickListener(item: SystemResponse, position: Int, view:View) {
-//                    Navigation.findNavController(view).navigate(R.id.action_mainfragment_to_systemArrFragment,
-//                        Bundle().apply {
-//                            putSerializable("data",item)
-//                            putInt("index",position)
-//                        }
-//                    )
+                    Navigation.findNavController(view).navigate(R.id.action_mainfragment_to_systemArrFragment,
+                        Bundle().apply {
+                            putSerializable("data",item)
+                            putInt("index",position)
+                        }
+                    )
                 }
 
             })

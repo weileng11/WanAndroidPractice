@@ -1,6 +1,8 @@
 package com.bruce.wanandroidmvvm_sx.ui.tree
 
+import android.os.Bundle
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ConvertUtils
 import com.bruce.wanandroidmvvm_sx.R
@@ -70,25 +72,25 @@ class AskFragment : BaseFragment<TreeViewModel, IncludeListBinding>(){
                         }
                     } else {
                         v.isChecked = true
-//                        Navigation.findNavController(v)
-//                            .navigate(R.id.action_mainFragment_to_loginFragment)
+                        Navigation.findNavController(v)
+                            .navigate(R.id.action_mainFragment_to_loginFragment)
                     }
                 }
             })
             setOnItemClickListener { _, view, position ->
-//                Navigation.findNavController(view)
-//                    .navigate(R.id.action_mainfragment_to_webFragment, Bundle().apply {
-//                        putSerializable("ariticleData",articleAdapter.data[position])
-//                    })
+                Navigation.findNavController(view)
+                    .navigate(R.id.action_mainfragment_to_webFragment, Bundle().apply {
+                        putSerializable("ariticleData",articleAdapter.data[position])
+                    })
             }
             addChildClickViewIds(R.id.item_home_author)
             addChildClickViewIds(R.id.item_project_author)
             setOnItemChildClickListener { adapter, view, position ->
                 when(view.id){
                     R.id.item_home_author,R.id.item_project_author ->{
-//                        Navigation.findNavController(view).navigate(R.id.action_mainfragment_to_lookInfoFragment,Bundle().apply {
-//                            putInt("id",articleAdapter.data[position-recyclerView.headerCount].userId)
-//                        })
+                        Navigation.findNavController(view).navigate(R.id.action_mainfragment_to_lookInfoFragment,Bundle().apply {
+                            putInt("id",articleAdapter.data[position-recyclerView.headerCount].userId)
+                        })
                     }
                 }
             }

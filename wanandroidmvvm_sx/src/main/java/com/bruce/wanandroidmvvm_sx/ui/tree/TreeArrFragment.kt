@@ -2,6 +2,7 @@ package com.bruce.wanandroidmvvm_sx.ui.tree
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import com.bruce.wanandroidmvvm_sx.R
 import com.bruce.wanandroidmvvm_sx.app.base.BaseFragment
 import com.bruce.wanandroidmvvm_sx.app.ext.bindViewPager2
@@ -43,8 +44,8 @@ class TreeArrFragment : BaseFragment<TreeViewModel, FragmentViewpagerBinding>() 
             setOnMenuItemClickListener {
                 when (it.itemId) {
                     R.id.todo_add -> {
-//                        Navigation.findNavController(this)
-//                            .navigate(R.id.action_mainfragment_to_addAriticleFragment)
+                        Navigation.findNavController(this)
+                            .navigate(R.id.action_mainfragment_to_addAriticleFragment)
                     }
                 }
                 true

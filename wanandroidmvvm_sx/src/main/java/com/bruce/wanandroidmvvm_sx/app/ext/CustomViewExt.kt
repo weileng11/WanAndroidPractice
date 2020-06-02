@@ -8,6 +8,7 @@ import android.text.Html
 import android.view.View
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
+import android.view.animation.Interpolator
 import android.view.inputmethod.InputMethodManager
 import android.widget.FrameLayout
 import android.widget.LinearLayout
@@ -257,7 +258,7 @@ fun MagicIndicator.bindViewPager2(
                 lineWidth = UIUtil.dip2px(context.applicationContext, 30.0).toFloat()
                 //线条的圆角
                 roundRadius = UIUtil.dip2px(context.applicationContext, 6.0).toFloat()
-                startInterpolator = AccelerateInterpolator()
+                startInterpolator = AccelerateInterpolator() as Interpolator?
                 endInterpolator = DecelerateInterpolator(2.0f)
                 //线条的颜色
                 setColors(Color.WHITE)
@@ -359,7 +360,7 @@ fun clickNoRepeatLogin(vararg view: View?,interval: Long = 500, action: (view: V
             if(CacheUtil.isLogin()){
                 action(it)
             }else{
-//                Navigation.findNavController(it).navigate(R.id.action_mainFragment_to_loginFragment)
+                Navigation.findNavController(it).navigate(R.id.action_mainFragment_to_loginFragment)
             }
         }
     }
