@@ -22,6 +22,7 @@ import kotlin.properties.Delegates
  * 描述　:8244   https://github.com/hegaojian/JetpackMvvm
  */
 class App : BaseApp() {
+
     //伴生对象
     companion object {
         var CONTEXT: Context by Delegates.notNull()
